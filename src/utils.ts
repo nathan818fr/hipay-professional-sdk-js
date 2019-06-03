@@ -1,3 +1,6 @@
+import {js2xml} from 'xml-js';
+import {namespaces, TypeDefinition} from './Types';
+
 export const getPackageVersion = () => {
     try {
         const pkg = require(__dirname + '/../package.json');
@@ -16,6 +19,24 @@ export const objectGetOrThrow = (obj: any, ...keys: string[]) => {
         }
     }
     return r;
+};
+
+export const createBody = (endpoint: string, data: any, dataType: TypeDefinition): string => {
+    const body = {
+        '_declaration': {_attributes: {version: '1.0', encoding: 'UTF-8'}},
+        'SOAP-ENV:Envelope': {
+            '_attributes': {
+                'xmlns:SOAP-ENV': 'http://schemas.xmlsoap.org/soap/envelope/',
+                ['xmlns:' + dataType.ns]: endpoint + namespaces[dataType.ns],
+            },
+            'SOAP-ENV:Body': {
+                [dataType.ns + ':' + dataType.reqType]: {
+                    parameters: createBodyParameters(data),
+                },
+            },
+        },
+    };
+    return js2xml(body, {compact: true});
 };
 
 export const createBodyParameters = (data: any, key?: string): any => {

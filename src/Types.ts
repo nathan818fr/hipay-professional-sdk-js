@@ -86,9 +86,9 @@ export interface RefundOrderResult {
 }
 
 const namespaces: { [key: string]: string } = {
-    ns1: 'https://ws.hipay.com/soap/payment-v2',
-    ns2: 'https://ws.hipay.com/soap/transaction-v2',
-    ns3: 'https://ws.hipay.com/soap/refund-v2'
+    ns1: 'soap/payment-v2',
+    ns2: 'soap/transaction-v2',
+    ns3: 'soap/refund-v2'
 };
 export {namespaces};
 

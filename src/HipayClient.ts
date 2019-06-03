@@ -1,6 +1,6 @@
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {format as formatUrl, parse as parseUrl} from 'url';
-import {js2xml, xml2js} from 'xml-js';
+import {xml2js} from 'xml-js';
 import {
     CancelOrderRequest,
     CancelOrderResult,
@@ -9,12 +9,11 @@ import {
     CreateOrderRequest,
     CreateOrderResult,
     definitions,
-    namespaces,
     RefundOrderRequest,
     RefundOrderResult,
     TypeDefinition,
 } from './Types';
-import {createBodyParameters, getPackageVersion, objectGetOrThrow} from './utils';
+import {createBody, getPackageVersion, objectGetOrThrow} from './utils';
 
 const validateStatus = (status: number) => status === 200 || status === 500;
 const transformResponse = (data: any) => data;
@@ -37,24 +36,6 @@ export class HipayClient {
         } catch (ignored) {
         }
         throw new Error('env must be "production", "stage" or a valid http(s) URL');
-    }
-
-    private static createBody(data: any, dataType: TypeDefinition): string {
-        const body = {
-            '_declaration': {_attributes: {version: '1.0', encoding: 'UTF-8'}},
-            'SOAP-ENV:Envelope': {
-                '_attributes': {
-                    'xmlns:SOAP-ENV': 'http://schemas.xmlsoap.org/soap/envelope/',
-                    ['xmlns:' + dataType.ns]: namespaces[dataType.ns],
-                },
-                'SOAP-ENV:Body': {
-                    [dataType.ns + ':' + dataType.reqType]: {
-                        parameters: createBodyParameters(data),
-                    },
-                },
-            },
-        };
-        return js2xml(body, {compact: true});
     }
 
     private readonly _environment: Environment;
@@ -91,7 +72,7 @@ export class HipayClient {
             url: uri,
             method: 'post',
             responseType: 'text',
-            data: HipayClient.createBody({...this._defaultData, ...data}, dataType),
+            data: createBody(this._endpoint, {...this._defaultData, ...data}, dataType),
             validateStatus,
             transformResponse,
             ...this._defaultReqOpts,
