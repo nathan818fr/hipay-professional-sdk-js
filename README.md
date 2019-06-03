@@ -38,12 +38,12 @@ hipayClient.createOrder({
     urlCallback: 'https://domain.tld/hipay-callback',
 }).then((response) => {
     if (response.error) {
-        // Hipay has reported an error during the request
+        // Hipay reported an error during the request
         console.log(response.error); // {code: number, description: string}
         return;
     }
-    
-    // Hipay has create a new order, you can redirect your customer to the
+
+    // Hipay created the new order, you can redirect your customer to the
     // payment page!
     console.log(response.result); // {redirectUrl: string}
 }).catch((err) => {
@@ -66,14 +66,14 @@ You must also create a website and get it's ID:
 - Get your website ID (will be under your website name)
 
 You can now start using this SDK! Usual flow is:
-1. Create an order (HipayClient.createOrder)
+1. Create an order ([HipayClient.createOrder](https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#createorder))
 2. Redirect your customer to the payment page
 3. Listen for callback/pingback calls (TODO)
-4. Capture payments (HipayClient.captureOrder)
+4. Capture payments ([HipayClient.captureOrder](https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#captureorder))
 
 ## Documentation
 
-Technical documentation: TODO
+Technical documentation: https://nathan818fr.github.io/hipay-professional-sdk-js/
 
 ## Building
 
