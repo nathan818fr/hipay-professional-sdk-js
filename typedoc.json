@@ -1,0 +1,9 @@
+{
+  "out": "docs",
+  "mode": "file",
+  "excludeNotExported": true,
+  "excludePrivate": true,
+  "exclude": [
+    "src/utils.ts"
+  ]
+}

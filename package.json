@@ -9,12 +9,12 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nathan818fr/hipay-professional-sdk.git"
+    "url": "https://github.com/nathan818fr/hipay-professional-sdk-js.git"
   },
   "bugs": {
-    "url": "https://github.com/nathan818fr/hipay-professional-sdk/issues"
+    "url": "https://github.com/nathan818fr/hipay-professional-sdk-js/issues"
   },
-  "homepage": "https://github.com/nathan818fr/hipay-professional-sdk",
+  "homepage": "https://github.com/nathan818fr/hipay-professional-sdk-js",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
