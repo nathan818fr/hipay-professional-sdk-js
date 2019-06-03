@@ -1,0 +1,42 @@
+{
+  "name": "hipay-professional-sdk",
+  "version": "0.0.0",
+  "description": "HiPay Professional SDK for JavaScript",
+  "keywords": [
+    "hipay"
+  ],
+  "author": "Nathan Poirier <nathan@poirier.io>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nathan818fr/hipay-professional-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nathan818fr/hipay-professional-sdk/issues"
+  },
+  "homepage": "https://github.com/nathan818fr/hipay-professional-sdk",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "npm run clean && npm run lint && npm run build-ts",
+    "build-ts": "tsc",
+    "clean": "rimraf lib",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "test": "jest --forceExit --coverage --verbose --detectOpenHandles",
+    "release": "npm run lint && npm run test && npm run build && np"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.4",
+    "jest": "^24.8.0",
+    "np": "^5.0.2",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.17.0",
+    "typescript": "^3.5.1"
+  }
+}
