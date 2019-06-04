@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HipayError | hipay-professional-sdk-js</title>
+	<title>RequestOptions | hipay-professional-sdk-js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,29 +54,26 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="hipayerror.html">HipayError</a>
+					<a href="requestoptions.html">RequestOptions</a>
 				</li>
 			</ul>
-			<h1>Interface HipayError</h1>
+			<h1>Interface RequestOptions</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>API request error.</p>
-					</div>
-					<p><a href="https://developer.hipay.com/getting-started/platform-hipay-professional/overview/#integration-guidelines-error-handling">HiPay documentation</a></p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HipayError</span>
+						<span class="tsd-signature-type">object</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">RequestOptions</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -87,8 +84,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hipayerror.html#code" class="tsd-kind-icon">code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hipayerror.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="requestoptions.html#timeout" class="tsd-kind-icon">timeout</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,32 +93,17 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="code" class="tsd-anchor"></a>
-					<h3>code</h3>
-					<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="timeout" class="tsd-anchor"></a>
+					<h3>timeout</h3>
+					<div class="tsd-signature tsd-kind-icon">timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L316">HipayClient.ts:316</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L284">HipayClient.ts:284</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Error code returned by HiPay.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="description" class="tsd-anchor"></a>
-					<h3>description</h3>
-					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L321">HipayClient.ts:321</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Error cause description.</p>
+							<p>The number of milliseconds before the request times out.</p>
 						</div>
 					</div>
 				</section>
@@ -171,21 +152,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="hipayclientoptions.html" class="tsd-kind-icon">Hipay<wbr>Client<wbr>Options</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="hipayerror.html" class="tsd-kind-icon">Hipay<wbr>Error</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="hipayerror.html#code" class="tsd-kind-icon">code</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="hipayerror.html#description" class="tsd-kind-icon">description</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="hipayresponse.html" class="tsd-kind-icon">Hipay<wbr>Response</a>
 					</li>
@@ -198,9 +167,18 @@
 					<li class=" tsd-kind-interface">
 						<a href="refundorderresult.html" class="tsd-kind-icon">Refund<wbr>Order<wbr>Result</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="requestoptions.html" class="tsd-kind-icon">Request<wbr>Options</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="requestoptions.html#timeout" class="tsd-kind-icon">timeout</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="tax.html" class="tsd-kind-icon">Tax</a>
 					</li>

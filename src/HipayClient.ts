@@ -13,7 +13,7 @@ import {
     RefundOrderResult,
     TypeDefinition,
 } from './Types';
-import {createBody, getPackageVersion, objectGetOrThrow} from './utils';
+import {createBody, getPackageVersion, objectGetOrThrow, Omit} from './utils';
 
 const validateStatus = (status: number) => status === 200 || status === 500;
 const transformResponse = (data: any) => data;
@@ -43,6 +43,18 @@ export class HipayClient {
     private readonly _defaultData: any;
     private readonly _defaultReqOpts: RequestOptions;
 
+    /**
+     * Create a new HipayClient.
+     *
+     * Get your API credentials (login/password) from the dashboard [Toolbox](https://professional.hipay.com/toolbox/).
+     *
+     * Important: If you wan't to use the stage environment (for testing) use the sandbox site:
+     * [test-professional.hipay.com](https://test-professional.hipay.com/toolbox/)!
+     * Test accounts are validated automatically, just enter random (but valid) information at each step
+     * (to validate bank information use Bank Name: "HSBC" and IBAN: "FR7630056009271234567890182").
+     *
+     * @param opts
+     */
     constructor(opts: HipayClientOptions) {
         this._environment = opts.env;
         this._endpoint = HipayClient.getEndpoint(opts.env);
@@ -58,10 +70,16 @@ export class HipayClient {
         };
     }
 
+    /**
+     * Returns client environment
+     */
     public getEnvironment(): Environment {
         return this._environment;
     }
 
+    /**
+     * Returns client API endpoint
+     */
     public getEndpoint(): string {
         return this._endpoint;
     }
@@ -133,18 +151,78 @@ export class HipayClient {
         return r;
     }
 
+    /**
+     * Create a new order.
+     *
+     * At the time of payment you must create a new order then redirect the customer to the secure payment page hosted
+     * by HiPay.
+     * When the customer makes the payment the order is authorized and you can {@link HipayClient.captureOrder
+     * capture it}.
+     *
+     * [HiPay documentation](https://developer.hipay.com/getting-started/platform-hipay-professional/overview/#soap-api-resources-request-a-new-order)
+     *
+     * @param req Requests parameters.
+     * @param opts Requests options (you can set default values when creating the client:
+     * {@link HipayClientOptions.defaultReqOpts}).
+     * @return
+     * - *resolved* with an {@link HipayResponse} when the request complete (with {@link HipayResponse.error
+     * an error} or {@link HipayResponse.result the result})
+     * - *rejected* with an {@link HipayException} when an exception occurs (network error, malformed response, ...)
+     */
     public createOrder(req: CreateOrderRequest, opts?: RequestOptions): Promise<HipayResponse<CreateOrderResult>> {
         return this.request('/soap/payment-v2/generate', req, definitions.CreateOrderRequest, opts);
     }
 
+    /**
+     * Capture an order.
+     *
+     * Instruct the payment gateway to capture a previously-authorized transaction, i.e. transfer the funds from the
+     * customer's bank account to the merchant's bank account. This transaction is always preceded by an authorization.
+     *
+     * [HiPay documentation](https://developer.hipay.com/getting-started/platform-hipay-professional/overview/#soap-api-resources-maintenance-operations)
+     *
+     * @param req Requests parameters.
+     * @param opts Requests options (you can set default values when creating the client:
+     * {@link HipayClientOptions.defaultReqOpts}).
+     * @return
+     * - *resolved* with an {@link HipayResponse} when the request complete (with {@link HipayResponse.error
+     * an error} or {@link HipayResponse.result the result})
+     * - *rejected* with an {@link HipayException} when an exception occurs (network error, malformed response, ...)
+     */
     public captureOrder(req: CaptureOrderRequest, opts?: RequestOptions): Promise<HipayResponse<CaptureOrderResult>> {
         return this.request('/soap/transaction-v2/confirm', req, definitions.CaptureOrderRequest, opts);
     }
 
+    /**
+     * Cancel an order.
+     *
+     * [HiPay documentation](https://developer.hipay.com/getting-started/platform-hipay-professional/overview/#soap-api-resources-maintenance-operations)
+     *
+     * @param req Requests parameters.
+     * @param opts Requests options (you can set default values when creating the client:
+     * {@link HipayClientOptions.defaultReqOpts}).
+     * @return
+     * - *resolved* with an {@link HipayResponse} when the request complete (with {@link HipayResponse.error
+     * an error} or {@link HipayResponse.result the result})
+     * - *rejected* with an {@link HipayException} when an exception occurs (network error, malformed response, ...)
+     */
     public cancelOrder(req: CancelOrderRequest, opts?: RequestOptions): Promise<HipayResponse<CancelOrderResult>> {
         return this.request('/soap/transaction-v2/cancel', req, definitions.CancelOrderRequest, opts);
     }
 
+    /**
+     * Refund an order.
+     *
+     * [HiPay documentation](https://developer.hipay.com/getting-started/platform-hipay-professional/overview/#soap-api-resources-refund-an-order)
+     *
+     * @param req Requests parameters.
+     * @param opts Requests options (you can set default values when creating the client:
+     * {@link HipayClientOptions.defaultReqOpts}).
+     * @return
+     * - *resolved* with an {@link HipayResponse} when the request complete (with {@link HipayResponse.error
+     * an error} or {@link HipayResponse.result the result})
+     * - *rejected* with an {@link HipayException} when an exception occurs (network error, malformed response, ...)
+     */
     public refundOrder(req: RefundOrderRequest, opts?: RequestOptions): Promise<HipayResponse<RefundOrderResult>> {
         return this.request('/soap/refund-v2/card', req, definitions.RefundOrderRequest, opts);
     }
@@ -155,30 +233,99 @@ export class HipayClient {
 }
 
 export interface HipayClientOptions {
+    /**
+     * API environment (it defines the endpoint that will be used)
+     * - `production` set the endpoint to "https://ws.hipay.com/"
+     * - `stage` set the endpoint to "https://test-ws.hipay.com/"
+     *
+     * Note: You can also specify an endpoint URL directly
+     */
     env: Environment;
+
+    /**
+     * Your API login
+     */
     login: string;
+
+    /**
+     * Your API password
+     */
     password: string;
+
+    /**
+     * (not documented by HiPay)
+     */
     subAccountLogin?: string;
+
+    /**
+     * (not documented by HiPay)
+     */
     subAccountId?: number;
+
+    /**
+     * Override default requests options.
+     *
+     * Default:
+     * ```typescript
+     * {
+     *     timeout: 30 * 1000,
+     * }
+     * ```
+     */
     defaultReqOpts?: RequestOptions;
 }
 
 export type Environment = 'stage' | 'production' | string;
 
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-export type RequestOptions = Omit<AxiosRequestConfig, 'url' | 'method' | 'baseURL' | 'data' | 'responseType' | 'validateStatus' | 'transformResponse'>;
+export interface RequestOptions extends Omit<AxiosRequestConfig, 'url' | 'method' | 'baseURL' | 'data' | 'responseType' | 'validateStatus' | 'transformResponse'> {
+    /**
+     * The number of milliseconds before the request times out.
+     */
+    timeout: number;
+}
 
+/**
+ * API response to a request.
+ *
+ * If an error has occurred, error is defined and result is undefined.
+ * Otherwise, result is defined and error is undefined.
+ */
 export interface HipayResponse<T> {
     httpResponse: AxiosResponse;
+
+    /**
+     * An error (defined only if an error occurred).
+     */
     error?: HipayError;
+
+    /**
+     * The response result (defined only if no errors occurred).
+     */
     result?: T;
 }
 
+/**
+ * API request error.
+ *
+ * [HiPay documentation](https://developer.hipay.com/getting-started/platform-hipay-professional/overview/#integration-guidelines-error-handling)
+ */
 export interface HipayError {
+    /**
+     * Error code returned by HiPay.
+     */
     code: number;
+
+    /**
+     * Error cause description.
+     */
     description: string;
 }
 
+/**
+ * API request exception.
+ *
+ * Unlike {@link HipayError errors}, exceptions are unexpected and unanticipated events (network errors, ...).
+ */
 export class HipayException extends Error {
     public cause?: Error;
     public httpResponse?: AxiosResponse;

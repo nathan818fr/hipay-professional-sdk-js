@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Item | hipay-professional-sdk</title>
+	<title>Item | hipay-professional-sdk-js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">hipay-professional-sdk</a>
+					<a href="../index.html" class="title">hipay-professional-sdk-js</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -64,6 +64,19 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>An Item, displayed in order price details.</p>
+					</div>
+					<p>(not documented by HiPay)</p>
+					<dl class="tsd-comment-tags">
+						<dt>see</dt>
+						<dd><p><a href="createorderrequest.html#items">CreateOrderRequest.items</a></p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -99,7 +112,7 @@
 					<div class="tsd-signature tsd-kind-icon">amount<span class="tsd-signature-symbol">:</span> <a href="../globals.html#float" class="tsd-signature-type">Float</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8692596/src/Types.ts#L18">Types.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/Types.ts#L66">Types.ts:66</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -109,7 +122,7 @@
 					<div class="tsd-signature tsd-kind-icon">infos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8692596/src/Types.ts#L17">Types.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/Types.ts#L65">Types.ts:65</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -119,9 +132,14 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8692596/src/Types.ts#L15">Types.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/Types.ts#L56">Types.ts:56</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Item name, mandatory but displayed only if <a href="item.html#type">Item.type</a> === <a href="../enums/itemtype.html#product">ItemType.PRODUCT</a>.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="quantity" class="tsd-anchor"></a>
@@ -129,7 +147,7 @@
 					<div class="tsd-signature tsd-kind-icon">quantity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8692596/src/Types.ts#L19">Types.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/Types.ts#L67">Types.ts:67</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -139,7 +157,7 @@
 					<div class="tsd-signature tsd-kind-icon">reference<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8692596/src/Types.ts#L20">Types.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/Types.ts#L68">Types.ts:68</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -149,7 +167,7 @@
 					<div class="tsd-signature tsd-kind-icon">taxes<span class="tsd-signature-symbol">:</span> <a href="tax.html" class="tsd-signature-type">Tax</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8692596/src/Types.ts#L21">Types.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/Types.ts#L69">Types.ts:69</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -159,9 +177,19 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8692596/src/Types.ts#L16">Types.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/Types.ts#L63">Types.ts:63</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Item type, it define how HiPay will display this item.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="../enums/itemtype.html">ItemType</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -175,6 +203,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="../enums/itemtype.html" class="tsd-kind-icon">Item<wbr>Type</a>
+					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/hipayclient.html" class="tsd-kind-icon">Hipay<wbr>Client</a>
 					</li>
@@ -248,6 +279,9 @@
 						<a href="refundorderresult.html" class="tsd-kind-icon">Refund<wbr>Order<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="requestoptions.html" class="tsd-kind-icon">Request<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="tax.html" class="tsd-kind-icon">Tax</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -258,9 +292,6 @@
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#float" class="tsd-kind-icon">Float</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#requestoptions" class="tsd-kind-icon">Request<wbr>Options</a>
 					</li>
 				</ul>
 			</nav>

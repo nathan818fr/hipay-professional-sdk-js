@@ -1,6 +1,8 @@
 import {js2xml} from 'xml-js';
 import {namespaces, TypeDefinition} from './Types';
 
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
 export const getPackageVersion = () => {
     try {
         const pkg = require(__dirname + '/../package.json');

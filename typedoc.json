@@ -1,5 +1,6 @@
 {
   "out": "docs",
+  "name": "hipay-professional-sdk-js",
   "mode": "file",
   "excludeNotExported": true,
   "excludePrivate": true,

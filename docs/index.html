@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>hipay-professional-sdk</title>
+	<title>hipay-professional-sdk-js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">hipay-professional-sdk</a>
+					<a href="index.html" class="title">hipay-professional-sdk-js</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> hipay-professional-sdk</h1>
+			<h1> hipay-professional-sdk-js</h1>
 		</div>
 	</div>
 </header>
@@ -65,7 +65,7 @@
 				<h1 id="hipay-professional-sdk-npm-version">hipay-professional-sdk &middot; <a href="https://badge.fury.io/js/hipay-professional-sdk"><img src="https://badge.fury.io/js/hipay-professional-sdk.svg" alt="npm version"></a></h1>
 				<p><a href="https://hipay.com/en/hipay-professional">HiPay Professional</a> SDK for NodeJS.
 					You can create orders (payment pages), capture or refund payments and securely
-				decode callbacks (pingbacks) sent by Hipay.</p>
+				decode callbacks (pingbacks) sent by HiPay.</p>
 				<p>Note for TypeScript users:
 				This module build and provide its TypeScript declarations files (.d.ts).</p>
 				<h2 id="getting-started">Getting Started</h2>
@@ -94,18 +94,18 @@ hipayClient.createOrder({
     <span class="hljs-attr">urlCallback</span>: <span class="hljs-string">'https://domain.tld/hipay-callback'</span>,
 }).then(<span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
     <span class="hljs-keyword">if</span> (response.error) {
-        <span class="hljs-comment">// Hipay has reported an error during the request</span>
+        <span class="hljs-comment">// HiPay reported an error during the request</span>
         <span class="hljs-built_in">console</span>.log(response.error); <span class="hljs-comment">// {code: number, description: string}</span>
         <span class="hljs-keyword">return</span>;
     }
 
-    <span class="hljs-comment">// Hipay has create a new order, you can redirect your customer to the</span>
+    <span class="hljs-comment">// HiPay created the new order, you can redirect your customer to the</span>
     <span class="hljs-comment">// payment page!</span>
     <span class="hljs-built_in">console</span>.log(response.result); <span class="hljs-comment">// {redirectUrl: string}</span>
 }).catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
     <span class="hljs-comment">// An exception has occurred during the request (network error, ...)</span>
 });</code></pre>
-				<h2 id="documentation">Documentation</h2>
+				<h3 id="usage">Usage</h3>
 				<p>To begin you need to get your API credentials :</p>
 				<ul>
 					<li><a href="https://www.hipaydirect.com/auth/login">Login</a> to the Hipay Professional
@@ -122,12 +122,13 @@ hipayClient.createOrder({
 				</ul>
 				<p>You can now start using this SDK! Usual flow is:</p>
 				<ol>
-					<li>Create an order (HipayClient.createOrder)</li>
+					<li>Create an order (<a href="https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#createorder">HipayClient.createOrder</a>)</li>
 					<li>Redirect your customer to the payment page</li>
 					<li>Listen for callback/pingback calls (TODO)</li>
-					<li>Capture payments (HipayClient.captureOrder)</li>
+					<li>Capture payments (<a href="https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#captureorder">HipayClient.captureOrder</a>)</li>
 				</ol>
-				<p>Technical documentation is available here: </p>
+				<h2 id="documentation">Documentation</h2>
+				<p>Technical documentation: <a href="https://nathan818fr.github.io/hipay-professional-sdk-js/">https://nathan818fr.github.io/hipay-professional-sdk-js/</a></p>
 				<h2 id="building">Building</h2>
 				<p>This project uses TypeScript. To create javascript sources run:</p>
 				<pre><code class="language-sh">npm run build</code></pre>
@@ -163,6 +164,9 @@ npm run <span class="hljs-built_in">test</span></code></pre>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="enums/itemtype.html" class="tsd-kind-icon">Item<wbr>Type</a>
+					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/hipayclient.html" class="tsd-kind-icon">Hipay<wbr>Client</a>
 					</li>
@@ -209,6 +213,9 @@ npm run <span class="hljs-built_in">test</span></code></pre>
 						<a href="interfaces/refundorderresult.html" class="tsd-kind-icon">Refund<wbr>Order<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/requestoptions.html" class="tsd-kind-icon">Request<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/tax.html" class="tsd-kind-icon">Tax</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -219,9 +226,6 @@ npm run <span class="hljs-built_in">test</span></code></pre>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#float" class="tsd-kind-icon">Float</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#requestoptions" class="tsd-kind-icon">Request<wbr>Options</a>
 					</li>
 				</ul>
 			</nav>

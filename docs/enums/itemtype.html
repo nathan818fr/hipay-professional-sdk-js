@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HipayError | hipay-professional-sdk-js</title>
+	<title>ItemType | hipay-professional-sdk-js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="hipayerror.html">HipayError</a>
+					<a href="itemtype.html">ItemType</a>
 				</li>
 			</ul>
-			<h1>Interface HipayError</h1>
+			<h1>Enumeration ItemType</h1>
 		</div>
 	</div>
 </header>
@@ -66,65 +66,70 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>API request error.</p>
-					</div>
-					<p><a href="https://developer.hipay.com/getting-started/platform-hipay-professional/overview/#integration-guidelines-error-handling">HiPay documentation</a></p>
+					<dl class="tsd-comment-tags">
+						<dt>see</dt>
+						<dd><p><a href="../interfaces/item.html#type">Item.type</a></p>
+						</dd>
+					</dl>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">HipayError</span>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hipayerror.html#code" class="tsd-kind-icon">code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hipayerror.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="itemtype.html#fixed_costs" class="tsd-kind-icon">FIXED_<wbr>COSTS</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="itemtype.html#insurances" class="tsd-kind-icon">INSURANCES</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="itemtype.html#product" class="tsd-kind-icon">PRODUCT</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="itemtype.html#shipping_costs" class="tsd-kind-icon">SHIPPING_<wbr>COSTS</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="code" class="tsd-anchor"></a>
-					<h3>code</h3>
-					<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="fixed_costs" class="tsd-anchor"></a>
+					<h3>FIXED_<wbr>COSTS</h3>
+					<div class="tsd-signature tsd-kind-icon">FIXED_<wbr>COSTS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;2</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L316">HipayClient.ts:316</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/Types.ts#L40">Types.ts:40</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Error code returned by HiPay.</p>
-						</div>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="description" class="tsd-anchor"></a>
-					<h3>description</h3>
-					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="insurances" class="tsd-anchor"></a>
+					<h3>INSURANCES</h3>
+					<div class="tsd-signature tsd-kind-icon">INSURANCES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L321">HipayClient.ts:321</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/Types.ts#L39">Types.ts:39</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Error cause description.</p>
-						</div>
-					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="product" class="tsd-anchor"></a>
+					<h3>PRODUCT</h3>
+					<div class="tsd-signature tsd-kind-icon">PRODUCT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;4</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/Types.ts#L42">Types.ts:42</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="shipping_costs" class="tsd-anchor"></a>
+					<h3>SHIPPING_<wbr>COSTS</h3>
+					<div class="tsd-signature tsd-kind-icon">SHIPPING_<wbr>COSTS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;3</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/Types.ts#L41">Types.ts:41</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -138,9 +143,27 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="../enums/itemtype.html" class="tsd-kind-icon">Item<wbr>Type</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-enum">
+						<a href="itemtype.html" class="tsd-kind-icon">Item<wbr>Type</a>
+						<ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="itemtype.html#fixed_costs" class="tsd-kind-icon">FIXED_<wbr>COSTS</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="itemtype.html#insurances" class="tsd-kind-icon">INSURANCES</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="itemtype.html#product" class="tsd-kind-icon">PRODUCT</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="itemtype.html#shipping_costs" class="tsd-kind-icon">SHIPPING_<wbr>COSTS</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="../classes/hipayclient.html" class="tsd-kind-icon">Hipay<wbr>Client</a>
 					</li>
@@ -148,64 +171,52 @@
 						<a href="../classes/hipayexception.html" class="tsd-kind-icon">Hipay<wbr>Exception</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="affiliate.html" class="tsd-kind-icon">Affiliate</a>
+						<a href="../interfaces/affiliate.html" class="tsd-kind-icon">Affiliate</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="cancelorderrequest.html" class="tsd-kind-icon">Cancel<wbr>Order<wbr>Request</a>
+						<a href="../interfaces/cancelorderrequest.html" class="tsd-kind-icon">Cancel<wbr>Order<wbr>Request</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="cancelorderresult.html" class="tsd-kind-icon">Cancel<wbr>Order<wbr>Result</a>
+						<a href="../interfaces/cancelorderresult.html" class="tsd-kind-icon">Cancel<wbr>Order<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="captureorderrequest.html" class="tsd-kind-icon">Capture<wbr>Order<wbr>Request</a>
+						<a href="../interfaces/captureorderrequest.html" class="tsd-kind-icon">Capture<wbr>Order<wbr>Request</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="captureorderresult.html" class="tsd-kind-icon">Capture<wbr>Order<wbr>Result</a>
+						<a href="../interfaces/captureorderresult.html" class="tsd-kind-icon">Capture<wbr>Order<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="createorderrequest.html" class="tsd-kind-icon">Create<wbr>Order<wbr>Request</a>
+						<a href="../interfaces/createorderrequest.html" class="tsd-kind-icon">Create<wbr>Order<wbr>Request</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="createorderresult.html" class="tsd-kind-icon">Create<wbr>Order<wbr>Result</a>
+						<a href="../interfaces/createorderresult.html" class="tsd-kind-icon">Create<wbr>Order<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="hipayclientoptions.html" class="tsd-kind-icon">Hipay<wbr>Client<wbr>Options</a>
+						<a href="../interfaces/hipayclientoptions.html" class="tsd-kind-icon">Hipay<wbr>Client<wbr>Options</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="hipayerror.html" class="tsd-kind-icon">Hipay<wbr>Error</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="hipayerror.html#code" class="tsd-kind-icon">code</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="hipayerror.html#description" class="tsd-kind-icon">description</a>
-							</li>
-						</ul>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/hipayerror.html" class="tsd-kind-icon">Hipay<wbr>Error</a>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="hipayresponse.html" class="tsd-kind-icon">Hipay<wbr>Response</a>
+						<a href="../interfaces/hipayresponse.html" class="tsd-kind-icon">Hipay<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="item.html" class="tsd-kind-icon">Item</a>
+						<a href="../interfaces/item.html" class="tsd-kind-icon">Item</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="refundorderrequest.html" class="tsd-kind-icon">Refund<wbr>Order<wbr>Request</a>
+						<a href="../interfaces/refundorderrequest.html" class="tsd-kind-icon">Refund<wbr>Order<wbr>Request</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="refundorderresult.html" class="tsd-kind-icon">Refund<wbr>Order<wbr>Result</a>
+						<a href="../interfaces/refundorderresult.html" class="tsd-kind-icon">Refund<wbr>Order<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="requestoptions.html" class="tsd-kind-icon">Request<wbr>Options</a>
+						<a href="../interfaces/requestoptions.html" class="tsd-kind-icon">Request<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="tax.html" class="tsd-kind-icon">Tax</a>
+						<a href="../interfaces/tax.html" class="tsd-kind-icon">Tax</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="typedefinition.html" class="tsd-kind-icon">Type<wbr>Definition</a>
+						<a href="../interfaces/typedefinition.html" class="tsd-kind-icon">Type<wbr>Definition</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#environment" class="tsd-kind-icon">Environment</a>

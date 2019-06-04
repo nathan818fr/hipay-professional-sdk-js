@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HipayResponse | hipay-professional-sdk</title>
+	<title>HipayResponse | hipay-professional-sdk-js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">hipay-professional-sdk</a>
+					<a href="../index.html" class="title">hipay-professional-sdk-js</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -64,6 +64,15 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>API response to a request.</p>
+					</div>
+					<p>If an error has occurred, error is defined and result is undefined.
+					Otherwise, result is defined and error is undefined.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -103,9 +112,14 @@
 					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <a href="hipayerror.html" class="tsd-signature-type">HipayError</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8692596/src/HipayClient.ts#L192">HipayClient.ts:192</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L299">HipayClient.ts:299</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An error (defined only if an error occurred).</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="httpresponse" class="tsd-anchor"></a>
@@ -113,7 +127,7 @@
 					<div class="tsd-signature tsd-kind-icon">http<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AxiosResponse</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8692596/src/HipayClient.ts#L191">HipayClient.ts:191</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L294">HipayClient.ts:294</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -123,9 +137,14 @@
 					<div class="tsd-signature tsd-kind-icon">result<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8692596/src/HipayClient.ts#L193">HipayClient.ts:193</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L304">HipayClient.ts:304</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The response result (defined only if no errors occurred).</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -139,6 +158,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="../enums/itemtype.html" class="tsd-kind-icon">Item<wbr>Type</a>
+					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/hipayclient.html" class="tsd-kind-icon">Hipay<wbr>Client</a>
 					</li>
@@ -200,6 +222,9 @@
 						<a href="refundorderresult.html" class="tsd-kind-icon">Refund<wbr>Order<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="requestoptions.html" class="tsd-kind-icon">Request<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="tax.html" class="tsd-kind-icon">Tax</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -210,9 +235,6 @@
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#float" class="tsd-kind-icon">Float</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#requestoptions" class="tsd-kind-icon">Request<wbr>Options</a>
 					</li>
 				</ul>
 			</nav>
