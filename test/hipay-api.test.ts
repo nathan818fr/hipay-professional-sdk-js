@@ -1,4 +1,5 @@
 import {config as loadEnv} from 'dotenv';
+import * as ngrok from 'ngrok';
 import {Browser, launch as launchBrowser} from 'puppeteer';
 import {CreateOrderRequest, HipayClient, HipayNotificationResponse} from '../src';
 import {
@@ -12,9 +13,9 @@ import {
 } from './utils/hipay-helpers';
 import {NotificationListener} from './utils/notification-listener';
 
-
 let hipayClient: HipayClient;
 let listener: NotificationListener;
+let callbackUrl: string;
 let browser: Browser;
 let browserDebug = false;
 
@@ -26,9 +27,8 @@ beforeAll(async () => {
         || !process.env.HIPAY_PASSWORD
         || !process.env.HIPAY_WEBSITE_ID
         || !process.env.HIPAY_CATEGORY_ID
-        || !process.env.CALLBACK_URL
     ) {
-        throw new Error('HIPAY_LOGIN, HIPAY_PASSWORD, HIPAY_WEBSITE_ID, HIPAY_CATEGORY_ID and CALLBACK_URL must be defined!');
+        throw new Error('HIPAY_LOGIN, HIPAY_PASSWORD, HIPAY_WEBSITE_ID, HIPAY_CATEGORY_ID must be defined!');
     }
 
     console.log('Create HipayClient...');
@@ -40,7 +40,8 @@ beforeAll(async () => {
 
     console.log('Setup notification listener...');
     listener = new NotificationListener(hipayClient);
-    await listener.start();
+    const addr = await listener.start(0);
+    callbackUrl = await ngrok.connect({addr: addr.port, bind_tls: false});
 
     console.log('Prepare browser...');
     browserDebug = (process.env.BROWSER_DEBUG === '1');
@@ -59,6 +60,12 @@ afterAll(async () => {
         listener = undefined;
     }
 
+    if (callbackUrl) {
+        await ngrok.disconnect(callbackUrl);
+        callbackUrl = undefined;
+    }
+    await ngrok.kill();
+
     if (browser && !browserDebug) {
         await browser.close();
         browser = undefined;
@@ -68,7 +75,7 @@ afterAll(async () => {
 describe('test payment flow', () => {
     it('authorize, capture and refund', async () => {
         console.log('create order...');
-        const order = newCreateOrderRequest();
+        const order = newCreateOrderRequest({callbackUrl});
         const url = await createOrderOrThrow(hipayClient, order);
         listener.clear();
 
@@ -115,7 +122,7 @@ describe('test payment flow', () => {
     /* // FIXME: Disable currently because HiPay returns error #7 'wsSubAccountId not found' when trying to cancel
     it('authorize and cancel', async () => {
         console.log('create order...');
-        const order = newCreateOrderRequest();
+        const order = newCreateOrderRequest({callbackUrl});
         const url = await createOrderOrThrow(hipayClient, order);
         listener.clear();
 
@@ -141,23 +148,13 @@ describe('test payment flow', () => {
     */
 
     it('returns errors', async () => {
-        const order = newCreateOrderRequest();
+        const order = newCreateOrderRequest({callbackUrl});
         order.amount = '';
         order.manualCapture = false;
         const r = await hipayClient.createOrder(order);
         expect(r.error).toBeDefined();
         expect(r.error.code).toBe(3);
         expect(r.error.description).toContain('amount invalid');
-    });
-
-    it('throw on network exception', async () => {
-        const invalidClient = new HipayClient({
-            env: 'http://203.0.113.0/',
-            login: 'x',
-            password: 'x',
-            defaultReqOpts: {timeout: 1},
-        });
-        await expect(invalidClient.createOrder(newCreateOrderRequest())).rejects.toThrow();
     });
 });
 

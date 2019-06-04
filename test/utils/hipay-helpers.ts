@@ -11,7 +11,7 @@ import {
     RefundOrderResult,
 } from '../../src';
 
-export const newCreateOrderRequest = (): CreateOrderRequest => {
+export const newCreateOrderRequest = (opts?: { callbackUrl?: string }): CreateOrderRequest => {
     return {
         websiteId: parseInt(process.env.HIPAY_WEBSITE_ID),
         categoryId: parseInt(process.env.HIPAY_CATEGORY_ID),
@@ -23,7 +23,7 @@ export const newCreateOrderRequest = (): CreateOrderRequest => {
         description: 'A beautiful Lamborghini!',
         executionDate: new Date(),
         manualCapture: true,
-        urlCallback: process.env.CALLBACK_URL,
+        urlCallback: opts && opts.callbackUrl ? opts.callbackUrl : 'http://example.com/',
         emailCallback: 'merchant@example.com',
         items: [
             {

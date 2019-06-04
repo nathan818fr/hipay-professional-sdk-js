@@ -1,4 +1,5 @@
 import * as http from 'http';
+import {AddressInfo} from 'net';
 import {HipayClient, HipayNotificationResponse} from '../../src';
 
 export class NotificationListener {
@@ -12,16 +13,16 @@ export class NotificationListener {
         this._hipayClient = hipayClient;
     }
 
-    public start(): Promise<void> {
+    public start(port: number): Promise<AddressInfo> {
         let errorListener: (e: any) => void;
-        return (new Promise<void>((resolve, reject) => {
+        return (new Promise<AddressInfo>((resolve, reject) => {
             this._srv = http.createServer(this.listenReq);
             this._srv.on('error', errorListener = async (e) => {
                 await this.stop();
                 return reject(e);
             });
-            this._srv.listen(process.env.LISTEN_PORT || 80, () => {
-                return resolve();
+            this._srv.listen(port, () => {
+                return resolve(this._srv.address() as AddressInfo);
             });
         })).finally(() => {
             if (this._srv) {

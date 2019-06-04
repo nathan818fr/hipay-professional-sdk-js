@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - '10'
+dist: xenial
+sudo: false
+addons:
+  chrome: stable
+cache:
+  directories:
+    - node_modules
+install:
+  - npm i
+script:
+  - npm run lint
+  - npm test
