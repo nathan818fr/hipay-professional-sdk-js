@@ -1,0 +1,22 @@
+{
+  "mapiversion": "1.0",
+  "md5content": "3ea0d57bf68889bbf585fd6a8509a476",
+  "result": {
+    "operation": "authorization",
+    "status": "ok",
+    "date": "2019-06-04",
+    "time": "07:52:09 UTC+0000",
+    "origAmount": "19.99",
+    "origCurrency": "EUR",
+    "emailClient": "customer@example.com",
+    "idClient": "1",
+    "cardCountry": "US",
+    "ipCountry": "FR",
+    "merchantDatas": {"custom1": "value1", "custom2": "value2"},
+    "transid": "5CF62325CB217655",
+    "is3ds": "No",
+    "paymentMethod": "MASTERCARD",
+    "refProduct0": "LAMBO-AV-S",
+    "customerCountry": "FR"
+  }
+}

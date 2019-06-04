@@ -84,6 +84,15 @@ npm run build
 
 ## Testing
 
+For unit tests, a **real payment flow is reproduced** and tested (on the HiPay
+staging API):
+- An order is created
+- A browser is opened on the payment page and make a payment
+- A Notification (callback) listener wait for the transaction autorisation
+- The order is captured
+- A Notification (callback) listener wait for the transaction capture
+(and several other complementary tests are performed)
+
 Run the unit tests (no need to run build before, they use the typescript files):
 ```sh
 npm run lint

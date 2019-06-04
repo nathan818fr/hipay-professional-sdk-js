@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="https://test-ws.hipay.com/soap/payment-v2"><SOAP-ENV:Body><ns1:generateResponse><generateResult><redirectUrl/><code>3</code><description>description</description></generateResult></ns1:generateResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>

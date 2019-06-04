@@ -117,9 +117,13 @@ export class HipayClient {
         } catch (e) {
             throw new HipayException('Error during HTTP requests to Hipay', e, e.isAxiosError ? e.response : undefined);
         }
+        return this.parseResponse(httpResponse.data, dataType, httpResponse);
+    }
+
+    private parseResponse(data: any, dataType: TypeDefinition, httpResponse?: AxiosResponse) {
         let error: HipayError, result: any;
         try {
-            let r: any = xml2js(httpResponse.data, {
+            let r: any = xml2js(data, {
                 compact: true,
                 ignoreDeclaration: true,
                 ignoreInstruction: true,
@@ -136,7 +140,7 @@ export class HipayClient {
             result = {};
             for (const k in r) {
                 if (r.hasOwnProperty(k)) {
-                    result[k] = r[k] ? r[k]._text : undefined;
+                    result[k] = r[k]._text;
                 }
             }
             if (result.code !== '0') {
@@ -281,18 +285,18 @@ export class HipayClient {
         const checkMd5Content = !opts || opts.checkMd5Content !== false; // defaults to true
         const checkSignature = opts && opts.checkSignature === true; // defaults to false
         if (checkMd5Content || checkSignature) {
-            let md5content;
-            try {
-                md5content = Buffer.from(xml.mapi.md5content._text, 'hex');
-            } catch (e) {
-                throw new Error('md5content is invalid (not hexadecimal)');
+            const md5content = Buffer.from(xml.mapi.md5content._text, 'hex');
+            if (!md5content || md5content.length !== 16) {
+                throw new Error('md5content is invalid');
             }
 
             const resultBegin = xmlStr.indexOf('<result>');
+            // istanbul ignore next
             if (resultBegin === -1) {
                 throw new Error('Unable to find result begin');
             }
             let resultEnd = xmlStr.lastIndexOf('</result>');
+            // istanbul ignore next
             if (resultEnd === -1) {
                 throw new Error('Unable to find result end');
             }
@@ -306,7 +310,7 @@ export class HipayClient {
             const signature = hash.digest();
 
             if (!crypto.timingSafeEqual(md5content, signature)) {
-                throw new Error('Bad ' + (opts.checkSignature ? 'signature' : 'md5content')
+                throw new Error('Bad ' + (checkSignature ? 'signature' : 'md5content')
                     + ' (' + md5content.toString('hex') + ' != ' + signature.toString('hex') + ')');
             }
         }

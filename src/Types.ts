@@ -293,7 +293,7 @@ export interface RefundOrderRequest {
      */
     transactionPublicId: string;
 
-    amount?: Float;
+    amount: Float;
 }
 
 /**
@@ -339,6 +339,7 @@ export interface OrderNotificationResult {
     is3ds?: string;
     paymentMethod?: string;
     customerCountry?: string;
+    refundedAmount?: string;
     returnCode?: string;
     returnDescriptionShort?: string;
     returnDescriptionLong?: string;

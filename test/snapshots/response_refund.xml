@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="https://test-ws.hipay.com/soap/refund-v2"><SOAP-ENV:Body><ns1:cardResponse><cardResult><code>0</code><description>Refund to credit card request for transaction 5CF68C1301DC7655 has been sent !</description><currency>EUR</currency><amount>9.99</amount><transactionPublicId>5CF68C1301DC7655</transactionPublicId></cardResult></ns1:cardResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>

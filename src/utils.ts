@@ -6,10 +6,13 @@ export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export const getPackageVersion = () => {
     try {
         const pkg = require(__dirname + '/../package.json');
-        return pkg.version || '?';
-    } catch (e) {
-        return '?';
+        if (pkg.version) {
+            return pkg.version;
+        }
+    } catch (ignored) {
     }
+    // istanbul ignore next
+    return '?';
 };
 
 export const objectGetOrThrow = (obj: any, ...keys: string[]) => {
