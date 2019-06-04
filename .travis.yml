@@ -10,6 +10,8 @@ cache:
     - node_modules
 install:
   - npm i
+  - npm i -g codecov
 script:
   - npm run lint
   - npm test
+  - codecov
