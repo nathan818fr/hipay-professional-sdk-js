@@ -2,7 +2,7 @@
 
 [HiPay Professional](https://hipay.com/en/hipay-professional) SDK for NodeJS.
 You can create orders (payment pages), capture or refund payments and securely
-decode callbacks (pingbacks) sent by HiPay.
+decode Notifications (callbacks / pingbacks) sent by HiPay.
 
 Note for TypeScript users:
 This module build and provide its TypeScript declarations files (.d.ts).
@@ -68,7 +68,7 @@ You must also create a website and get it's ID:
 You can now start using this SDK! Usual flow is:
 1. Create an order ([HipayClient.createOrder](https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#createorder))
 2. Redirect your customer to the payment page
-3. Listen for callback/pingback calls (TODO)
+3. Listen for Notifications (callbacks / pingbacks) calls ([HipayClient.parseNotification](https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#parsenotification))
 4. Capture payments ([HipayClient.captureOrder](https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#captureorder))
 
 ## Documentation

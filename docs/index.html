@@ -65,7 +65,7 @@
 				<h1 id="hipay-professional-sdk-npm-version">hipay-professional-sdk &middot; <a href="https://badge.fury.io/js/hipay-professional-sdk"><img src="https://badge.fury.io/js/hipay-professional-sdk.svg" alt="npm version"></a></h1>
 				<p><a href="https://hipay.com/en/hipay-professional">HiPay Professional</a> SDK for NodeJS.
 					You can create orders (payment pages), capture or refund payments and securely
-				decode callbacks (pingbacks) sent by HiPay.</p>
+				decode Notifications (callbacks / pingbacks) sent by HiPay.</p>
 				<p>Note for TypeScript users:
 				This module build and provide its TypeScript declarations files (.d.ts).</p>
 				<h2 id="getting-started">Getting Started</h2>
@@ -124,11 +124,11 @@ hipayClient.createOrder({
 				<ol>
 					<li>Create an order (<a href="https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#createorder">HipayClient.createOrder</a>)</li>
 					<li>Redirect your customer to the payment page</li>
-					<li>Listen for callback/pingback calls (TODO)</li>
+					<li>Listen for Notifications (callbacks / pingbacks) calls (TODO)</li>
 					<li>Capture payments (<a href="https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#captureorder">HipayClient.captureOrder</a>)</li>
 				</ol>
 				<h2 id="documentation">Documentation</h2>
-				<p>Technical documentation: <a href="https://nathan818fr.github.io/hipay-professional-sdk-js/">https://nathan818fr.github.io/hipay-professional-sdk-js/</a></p>
+				<p>Technical documentation: [<a href="https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html%5D">https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html]</a></p>
 				<h2 id="building">Building</h2>
 				<p>This project uses TypeScript. To create javascript sources run:</p>
 				<pre><code class="language-sh">npm run build</code></pre>
@@ -200,11 +200,20 @@ npm run <span class="hljs-built_in">test</span></code></pre>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/hipayerror.html" class="tsd-kind-icon">Hipay<wbr>Error</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/hipaynotificationresponse.html" class="tsd-kind-icon">Hipay<wbr>Notification<wbr>Response</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="interfaces/hipayresponse.html" class="tsd-kind-icon">Hipay<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/item.html" class="tsd-kind-icon">Item</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/ordernotificationresult.html" class="tsd-kind-icon">Order<wbr>Notification<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/parsenotificationoptions.html" class="tsd-kind-icon">Parse<wbr>Notification<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/refundorderrequest.html" class="tsd-kind-icon">Refund<wbr>Order<wbr>Request</a>

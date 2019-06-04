@@ -1,4 +1,5 @@
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
+import crypto from 'crypto';
 import {format as formatUrl, parse as parseUrl} from 'url';
 import {xml2js} from 'xml-js';
 import {
@@ -9,6 +10,7 @@ import {
     CreateOrderRequest,
     CreateOrderResult,
     definitions,
+    OrderNotificationResult,
     RefundOrderRequest,
     RefundOrderResult,
     TypeDefinition,
@@ -227,6 +229,112 @@ export class HipayClient {
         return this.request('/soap/refund-v2/card', req, definitions.RefundOrderRequest, opts);
     }
 
+    /**
+     * Parse Notification (callback) inputs.
+     *
+     * After a successful purchase, HiPay calls twice your Notification (callback) URL in background with comprehensive
+     * information about the payment (the first time for the authorization notification and the second one for the
+     * capture notification).
+     * Information are passed through an `xml` field in the body of an http POST request (of type
+     * `application/x-www-form-urlencoded`).
+     * This method parses the contents of this xml field and validates the checksum of the request.
+     *
+     * Checksum or Signature verification:
+     * TODO (wait for HiPay support information about documentations errors)
+     *
+     * [HiPay documentation](https://developer.hipay.com/getting-started/platform-hipay-professional/overview/#server-to-server-notifications-what-is-a-server-to-server-notification)
+     *
+     * @param xmlStr The value of the field `xml` (from POST request body)
+     * @param opts
+     * @return
+     * - *resolved* with an {@link HipayNotificationResponse} when no error is encountered
+     * - *rejected* with an {@link Error} when any error occurs (invalid format, bad signature, ...)
+     */
+    public async parseNotification(xmlStr: string, opts?: ParseNotificationOptions): Promise<HipayNotificationResponse> {
+        // NOTE: This method returns a Promise in case of parsing or signature verification become async a day!
+
+        let xml: any;
+        try {
+            xml = xml2js(xmlStr, {
+                compact: true,
+                ignoreDeclaration: true,
+                ignoreInstruction: true,
+                ignoreAttributes: true,
+                ignoreComment: true,
+                ignoreCdata: true,
+                ignoreDoctype: true,
+            });
+        } catch (e) {
+            throw new Error('Can\'t decode XML content');
+        }
+
+        if (typeof xml !== 'object'
+            || typeof xml.mapi !== 'object'
+            || typeof xml.mapi.mapiversion !== 'object'
+            || typeof xml.mapi.mapiversion._text !== 'string'
+            || typeof xml.mapi.md5content !== 'object'
+            || typeof xml.mapi.md5content._text !== 'string'
+            || typeof xml.mapi.result !== 'object') {
+            throw new Error('Incomplete XML content');
+        }
+
+        const checkMd5Content = !opts || opts.checkMd5Content !== false; // defaults to true
+        const checkSignature = opts && opts.checkSignature === true; // defaults to false
+        if (checkMd5Content || checkSignature) {
+            let md5content;
+            try {
+                md5content = Buffer.from(xml.mapi.md5content._text, 'hex');
+            } catch (e) {
+                throw new Error('md5content is invalid (not hexadecimal)');
+            }
+
+            const resultBegin = xmlStr.indexOf('<result>');
+            if (resultBegin === -1) {
+                throw new Error('Unable to find result begin');
+            }
+            let resultEnd = xmlStr.lastIndexOf('</result>');
+            if (resultEnd === -1) {
+                throw new Error('Unable to find result end');
+            }
+            resultEnd += 9; // '</result>'.length
+
+            const hash = crypto.createHash('md5');
+            hash.update(Buffer.from(xmlStr.substring(resultBegin, resultEnd), 'utf8'));
+            if (checkSignature) {
+                hash.update(Buffer.from(this._defaultData.wsPassword, 'utf8'));
+            }
+            const signature = hash.digest();
+
+            if (!crypto.timingSafeEqual(md5content, signature)) {
+                throw new Error('Bad ' + (opts.checkSignature ? 'signature' : 'md5content')
+                    + ' (' + md5content.toString('hex') + ' != ' + signature.toString('hex') + ')');
+            }
+        }
+
+        const result: any = {};
+        for (const k in xml.mapi.result) {
+            if (xml.mapi.result.hasOwnProperty(k)) {
+                const v = xml.mapi.result[k];
+                if (k === 'merchantDatas') {
+                    result[k] = {};
+                    for (const dataKey in v) {
+                        if (v.hasOwnProperty(dataKey) && dataKey.indexOf('_aKey_') === 0) {
+                            result[k][dataKey.substr(6 /* '_aKey_'.length */)] = v[dataKey]._text;
+                        }
+                    }
+                } else if (typeof v._text !== 'undefined') {
+                    result[k] = v._text;
+                }
+            }
+        }
+
+        return {
+            mapiversion: xml.mapi.mapiversion._text,
+            md5content: xml.mapi.md5content._text,
+            result,
+        };
+    }
+
     public toString(): string {
         return 'HipayClient{environment=' + this._environment + '}';
     }
@@ -335,4 +443,18 @@ export class HipayException extends Error {
         this.cause = cause;
         this.httpResponse = httpResponse;
     }
+}
+
+export interface ParseNotificationOptions {
+    checkMd5Content?: boolean;
+    checkSignature?: boolean;
+}
+
+/**
+ * @see {@link HipayClient.parseNotification}
+ */
+export interface HipayNotificationResponse {
+    mapiversion: string;
+    md5content: string;
+    result: OrderNotificationResult;
 }

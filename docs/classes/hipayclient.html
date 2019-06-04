@@ -90,6 +90,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="hipayclient.html#createorder" class="tsd-kind-icon">create<wbr>Order</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="hipayclient.html#getendpoint" class="tsd-kind-icon">get<wbr>Endpoint</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="hipayclient.html#getenvironment" class="tsd-kind-icon">get<wbr>Environment</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="hipayclient.html#parsenotification" class="tsd-kind-icon">parse<wbr>Notification</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="hipayclient.html#refundorder" class="tsd-kind-icon">refund<wbr>Order</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="hipayclient.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
 							</ul>
@@ -109,7 +110,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L44">HipayClient.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/9f97f50/src/HipayClient.ts#L46">HipayClient.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -149,7 +150,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L209">HipayClient.ts:209</a></li>
+									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/9f97f50/src/HipayClient.ts#L211">HipayClient.ts:211</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -192,7 +193,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L192">HipayClient.ts:192</a></li>
+									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/9f97f50/src/HipayClient.ts#L194">HipayClient.ts:194</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -237,7 +238,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L172">HipayClient.ts:172</a></li>
+									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/9f97f50/src/HipayClient.ts#L174">HipayClient.ts:174</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -283,7 +284,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L83">HipayClient.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/9f97f50/src/HipayClient.ts#L85">HipayClient.ts:85</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -305,7 +306,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L76">HipayClient.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/9f97f50/src/HipayClient.ts#L78">HipayClient.ts:78</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -314,6 +315,53 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../globals.html#environment" class="tsd-signature-type">Environment</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="parsenotification" class="tsd-anchor"></a>
+					<h3>parse<wbr>Notification</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Notification<span class="tsd-signature-symbol">(</span>xmlStr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, opts<span class="tsd-signature-symbol">?: </span><a href="../interfaces/parsenotificationoptions.html" class="tsd-signature-type">ParseNotificationOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/hipaynotificationresponse.html" class="tsd-signature-type">HipayNotificationResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/9f97f50/src/HipayClient.ts#L253">HipayClient.ts:253</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Parse Notification (callback) inputs.</p>
+								</div>
+								<p>After a successful purchase, HiPay calls twice your Notification (callback) URL in background with comprehensive
+									information about the payment (the first time for the authorization notification and the second one for the
+									capture notification).
+									Information are passed through an <code>xml</code> field in the body of an http POST request (of type
+									<code>application/x-www-form-urlencoded</code>).
+								This method parses the contents of this xml field and validates the checksum of the request.</p>
+								<p>Checksum or Signature verification:
+								TODO (wait for HiPay support information about documentations errors)</p>
+								<p><a href="https://developer.hipay.com/getting-started/platform-hipay-professional/overview/#server-to-server-notifications-what-is-a-server-to-server-notification">HiPay documentation</a></p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>xmlStr: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value of the field <code>xml</code> (from POST request body)</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> opts: <a href="../interfaces/parsenotificationoptions.html" class="tsd-signature-type">ParseNotificationOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/hipaynotificationresponse.html" class="tsd-signature-type">HipayNotificationResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<ul>
+								<li><em>resolved</em> with an <a href="../interfaces/hipaynotificationresponse.html">HipayNotificationResponse</a> when no error is encountered</li>
+								<li><em>rejected</em> with an <a href="hipayexception.html#error">Error</a> when any error occurs (invalid format, bad signature, ...)</li>
+							</ul>
 						</li>
 					</ul>
 				</section>
@@ -327,7 +375,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L226">HipayClient.ts:226</a></li>
+									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/9f97f50/src/HipayClient.ts#L228">HipayClient.ts:228</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -370,7 +418,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/92e7304/src/HipayClient.ts#L230">HipayClient.ts:230</a></li>
+									<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/9f97f50/src/HipayClient.ts#L338">HipayClient.ts:338</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -416,6 +464,9 @@
 								<a href="hipayclient.html#getenvironment" class="tsd-kind-icon">get<wbr>Environment</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="hipayclient.html#parsenotification" class="tsd-kind-icon">parse<wbr>Notification</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="hipayclient.html#refundorder" class="tsd-kind-icon">refund<wbr>Order</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -455,11 +506,20 @@
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/hipayerror.html" class="tsd-kind-icon">Hipay<wbr>Error</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/hipaynotificationresponse.html" class="tsd-kind-icon">Hipay<wbr>Notification<wbr>Response</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="../interfaces/hipayresponse.html" class="tsd-kind-icon">Hipay<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/item.html" class="tsd-kind-icon">Item</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/ordernotificationresult.html" class="tsd-kind-icon">Order<wbr>Notification<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/parsenotificationoptions.html" class="tsd-kind-icon">Parse<wbr>Notification<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/refundorderrequest.html" class="tsd-kind-icon">Refund<wbr>Order<wbr>Request</a>

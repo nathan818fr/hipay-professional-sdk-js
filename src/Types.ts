@@ -175,7 +175,9 @@ export interface CreateOrderRequest {
     emailCallback?: string;
 
     /**
-     * The URL will be used by our server to send you information in order to update your database.
+     * The order Notification (callback) URL.
+     *
+     * This URL will be used by our server to send you information in order to update your database.
      *
      * [HiPay documentation](https://developer.hipay.com/getting-started/platform-hipay-professional/overview/#server-to-server-notifications)
      */
@@ -312,6 +314,34 @@ export interface RefundOrderResult {
      * Currency of refunded transaction.
      */
     currency: string;
+}
+
+type OrderNotificationOperation = 'authorization' | 'capture' | 'cancellation' | 'refund' | 'reject';
+type OrderNotificationStatus = 'ok' | 'nok' | 'cancel' | 'waiting';
+
+/**
+ * @see {@link HipayClient.parseNotification}
+ */
+export interface OrderNotificationResult {
+    operation: OrderNotificationOperation;
+    status: OrderNotificationStatus;
+    date: string;
+    time: string;
+    transid: string;
+    origAmount: Float;
+    origCurrency: string;
+    idForMerchant?: string;
+    emailClient?: string;
+    idClient?: string;
+    cardCountry?: string;
+    ipCountry?: string;
+    merchantDatas?: any;
+    is3ds?: string;
+    paymentMethod?: string;
+    customerCountry?: string;
+    returnCode?: string;
+    returnDescriptionShort?: string;
+    returnDescriptionLong?: string;
 }
 
 const namespaces: { [key: string]: string } = {
