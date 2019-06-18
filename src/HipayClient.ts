@@ -63,9 +63,13 @@ export class HipayClient {
         this._defaultData = {
             wsLogin: opts.login,
             wsPassword: opts.password,
-            wsSubAccountLogin: opts.subAccountLogin,
-            wsSubAccountId: opts.subAccountId,
         };
+        if (opts.subAccountLogin) {
+            this._defaultData.wsSubAccountLogin = opts.subAccountLogin;
+        }
+        if (opts.subAccountId) {
+            this._defaultData.wsSubAccountId = opts.subAccountId;
+        }
         this._defaultReqOpts = {
             timeout: 30 * 1000,
             ...opts.defaultReqOpts,
