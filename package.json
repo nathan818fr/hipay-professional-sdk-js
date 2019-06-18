@@ -32,18 +32,18 @@
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
     "@types/fs-extra": "^7.0.0",
-    "@types/jest": "^24.0.13",
-    "@types/node": "^12.0.4",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.8",
     "@types/puppeteer": "^1.12.4",
     "dotenv": "^8.0.0",
     "fs-extra": "^8.0.1",
     "jest": "^24.8.0",
-    "ngrok": "^3.1.1",
-    "np": "^5.0.2",
+    "ngrok": "^3.2.0",
+    "np": "^5.0.3",
     "puppeteer": "^1.17.0",
     "rimraf": "^2.6.3",
     "ts-jest": "^24.0.2",
     "tslint": "^5.17.0",
-    "typescript": "^3.5.1"
+    "typescript": "^3.5.2"
   }
 }
