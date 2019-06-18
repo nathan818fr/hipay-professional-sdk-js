@@ -306,16 +306,31 @@ export class HipayClient {
             }
             resultEnd += 9; // '</result>'.length
 
-            const hash = crypto.createHash('md5');
-            hash.update(Buffer.from(xmlStr.substring(resultBegin, resultEnd), 'utf8'));
-            if (checkSignature) {
-                hash.update(Buffer.from(this._defaultData.wsPassword, 'utf8'));
-            }
-            const signature = hash.digest();
-
-            if (!crypto.timingSafeEqual(md5content, signature)) {
-                throw new Error('Bad ' + (checkSignature ? 'signature' : 'md5content')
-                    + ' (' + md5content.toString('hex') + ' != ' + signature.toString('hex') + ')');
+            const checkMd5Content = (withPassword: boolean) => {
+                const hash = crypto.createHash('md5');
+                hash.update(Buffer.from(xmlStr.substring(resultBegin, resultEnd), 'utf8'));
+                if (withPassword) {
+                    hash.update(Buffer.from(this._defaultData.wsPassword, 'utf8'));
+                }
+                const signature = hash.digest();
+                if (!crypto.timingSafeEqual(md5content, signature)) {
+                    throw new Error(md5content.toString('hex') + '(current) != '
+                        + signature.toString('hex') + '(expected)');
+                }
+            };
+            try {
+                checkMd5Content(checkSignature);
+            } catch (e) {
+                if (checkSignature) {
+                    throw new Error('Bad signature: ' + e.message);
+                } else {
+                    // if the legacy md5content check fail, we need to try the new signature check
+                    try {
+                        checkMd5Content(true);
+                    } catch (e2) {
+                        throw new Error('Bad md5content: ' + e.message + ', ' + e2.message);
+                    }
+                }
             }
         }
 
