@@ -17,18 +17,15 @@ export class NotificationListener {
         let errorListener: (e: any) => void;
         return (new Promise<AddressInfo>((resolve, reject) => {
             this._srv = http.createServer(this.listenReq);
-            this._srv.on('error', errorListener = async (e) => {
+            this._srv.once('error', errorListener = async (e) => {
                 await this.stop();
                 return reject(e);
             });
             this._srv.listen(port, () => {
+                this._srv.removeListener('error', errorListener);
                 return resolve(this._srv.address() as AddressInfo);
             });
-        })).finally(() => {
-            if (this._srv) {
-                this._srv.off('error', errorListener);
-            }
-        });
+        }));
     }
 
     public stop() {
