@@ -294,7 +294,7 @@ export class HipayClient {
                 throw new Error('md5content is invalid');
             }
 
-            const resultBegin = xmlStr.indexOf('<result>');
+            const resultBegin = xmlStr.search(/<result(\s|>)/);
             // istanbul ignore next
             if (resultBegin === -1) {
                 throw new Error('Unable to find result begin');
