@@ -9,11 +9,10 @@ const FAKE_LOGIN = '0ca9872cc65e43f9a3519b8dd3d0f5ce';
 const FAKE_PASSWORD = 'f2022629d27c42ada763d7875ca11d9a';
 const hipayClient = new HipayClient({env: 'stage', login: FAKE_LOGIN, password: FAKE_PASSWORD});
 
-
 describe('client', () => {
     it('instantiate and returns basic information', () => {
         const def = {login: 'x', password: 'x'};
-        const newClient = (env: string) => new HipayClient({...def, env});
+        const newClient = (env: string, params?: any) => new HipayClient({...def, env, ...params});
         let client;
 
         client = newClient('stage');
@@ -31,7 +30,7 @@ describe('client', () => {
         expect(client.getEndpoint()).toBe('http://custom-endpoint.com/');
         expect(client.toString()).toBe('HipayClient{environment=http://custom-endpoint.com/}');
 
-        client = newClient('https://custom-endpoint.com/');
+        client = newClient('https://custom-endpoint.com/', {subAccountLogin: 'x', subAccountId: 1});
         expect(client.getEnvironment()).toBe('https://custom-endpoint.com/');
         expect(client.getEndpoint()).toBe('https://custom-endpoint.com/');
 
@@ -75,7 +74,7 @@ describe('client', () => {
         // error
         // @ts-ignore
         axios.request.mockResolvedValue({data: await snapshot('response_generate_error.xml')});
-        r = await hipayClient.createOrder(newCreateOrderRequest());
+        r = await hipayClient.createOrder(newCreateOrderRequest({undefinedItems: true}));
         expect(r.error).toBeDefined();
         expect(r.error.code).toBe(3);
         expect(r.error.description).toBeDefined();

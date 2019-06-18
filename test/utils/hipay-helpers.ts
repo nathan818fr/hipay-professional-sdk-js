@@ -11,7 +11,7 @@ import {
     RefundOrderResult,
 } from '../../src';
 
-export const newCreateOrderRequest = (opts?: { callbackUrl?: string }): CreateOrderRequest => {
+export const newCreateOrderRequest = (opts?: { callbackUrl?: string, undefinedItems?: boolean }): CreateOrderRequest => {
     return {
         websiteId: parseInt(process.env.HIPAY_WEBSITE_ID),
         categoryId: parseInt(process.env.HIPAY_CATEGORY_ID),
@@ -25,7 +25,7 @@ export const newCreateOrderRequest = (opts?: { callbackUrl?: string }): CreateOr
         manualCapture: true,
         urlCallback: opts && opts.callbackUrl ? opts.callbackUrl : 'http://example.com/',
         emailCallback: 'merchant@example.com',
-        items: [
+        items: opts && opts.undefinedItems ? undefined : [
             {
                 name: 'Lamborghini Aventador S',
                 type: ItemType.PRODUCT,
