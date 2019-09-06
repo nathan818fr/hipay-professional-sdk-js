@@ -73,7 +73,7 @@ You can now start using this SDK! Usual flow is:
 
 ## Documentation
 
-Technical documentation: [https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html]
+Technical documentation: [https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html](https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html)
 
 ## Building
 
