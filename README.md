@@ -1,4 +1,4 @@
-# hipay-professional-sdk &middot; [![Build Status](https://travis-ci.org/nathan818fr/hipay-professional-sdk-js.svg?branch=master)](https://travis-ci.org/nathan818fr/hipay-professional-sdk-js) [![codecov](https://codecov.io/gh/nathan818fr/hipay-professional-sdk-js/branch/master/graph/badge.svg)](https://codecov.io/gh/nathan818fr/hipay-professional-sdk-js) [![npm version](https://badge.fury.io/js/hipay-professional-sdk.svg)](https://badge.fury.io/js/hipay-professional-sdk)
+# hipay-professional-sdk &middot; [![Build Status](https://travis-ci.com/nathan818fr/hipay-professional-sdk-js.svg?branch=master)](https://travis-ci.com/nathan818fr/hipay-professional-sdk-js) [![codecov](https://codecov.io/gh/nathan818fr/hipay-professional-sdk-js/branch/master/graph/badge.svg)](https://codecov.io/gh/nathan818fr/hipay-professional-sdk-js) [![npm version](https://badge.fury.io/js/hipay-professional-sdk.svg)](https://badge.fury.io/js/hipay-professional-sdk)
 
 [HiPay Professional](https://hipay.com/en/hipay-professional) SDK for NodeJS.
 You can create orders (payment pages), capture or refund payments and securely
