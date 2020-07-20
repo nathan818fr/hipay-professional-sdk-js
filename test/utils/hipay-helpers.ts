@@ -1,4 +1,4 @@
-import {Browser} from 'puppeteer';
+import {Browser, ElementHandle} from 'puppeteer';
 import {
     CancelOrderRequest,
     CancelOrderResult,
@@ -96,6 +96,10 @@ export const client = {
     email: 'customer@example.com',
 };
 
+const getJsonProperty = (el: ElementHandle, propertyName: string) => {
+  return el.getProperty(propertyName).then((property) => property ? property.jsonValue() : null);
+};
+
 export const openBrowserAndPay = async (browser: Browser, orderUrl: string, cardNumber: string, opts: { browserDebug: boolean }) => {
     const page = await browser.newPage();
     try {
@@ -113,14 +117,14 @@ export const openBrowserAndPay = async (browser: Browser, orderUrl: string, card
         await page.select('#tokenCardExpiryDateYear', (new Date().getFullYear() + 5).toString(10));
         await page.type('#tokenCardSecurityCode', '123');
         await page.click('#validate_user_account_create_form');
-        await page.waitForNavigation({waitUntil: 'load', timeout: 60 * 1000});
-        let result;
-        if (await page.$('#endSuccessTransactionBlock') !== null) {
-            result = 'success';
-        } else if (await page.$('#endErrorTransactionBlock') !== null) {
-            result = 'error';
+        const resultElem = await page.waitForSelector('#endSuccessTransactionBlock, #endErrorTransactionBlock, #main-content .errors .errorsDetail', {timeout: 60 * 1000});
+        const resultMsg = ((await getJsonProperty(resultElem, 'textContent')) + '').trim().replace(/\s\s+/g, '$1');
+        if ((await getJsonProperty(resultElem, 'id')) === 'endSuccessTransactionBlock') {
+            return 'success';
+        } else {
+            console.log('Payment failed:', resultMsg);
+            return 'error';
         }
-        return result || 'unknown';
     } finally {
         if (!opts.browserDebug) {
             await page.close();
