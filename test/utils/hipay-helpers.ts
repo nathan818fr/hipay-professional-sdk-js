@@ -88,7 +88,7 @@ export const cancelOrderOrThrow = async (hipayClient: HipayClient, req: CancelOr
 };
 
 export const cards = {
-    VISA: '4111111111111111',
+    VISA: '4024007197102717',
     VISA_REJECTED: '4111113333333333',
 };
 
@@ -107,7 +107,7 @@ export const openBrowserAndPay = async (browser: Browser, orderUrl: string, card
         await page.type('#email', client.email);
         await page.select('#country', 'FR');
         await page.click('#cardTypeVisa');
-        await page.type('#tokenCardNumber', '4111111111111111');
+        await page.type('#tokenCardNumber', cards.VISA);
         await page.type('#tokenCardHolder', 'Card Holder');
         await page.select('#tokenCardExpiryDateMonth', '12');
         await page.select('#tokenCardExpiryDateYear', (new Date().getFullYear() + 5).toString(10));
