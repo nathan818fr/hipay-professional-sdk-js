@@ -95,7 +95,7 @@ describe('client', () => {
         // axios error
         // @ts-ignore
         axios.request.mockImplementation(() => {
-            return jest.requireActual('axios').request({url: 'http://203.0.113.0/', timeout: 1});
+            return jest.requireActual('axios').request({url: 'http://10.255.255.1/', timeout: 1});
         });
         await expect(hipayClient.createOrder(newCreateOrderRequest())).rejects.toThrow();
     });

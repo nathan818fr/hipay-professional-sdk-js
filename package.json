@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@babel/types": "^7.10.5",
-    "axios": "0.19.0",
+    "axios": "^0.21.1",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
