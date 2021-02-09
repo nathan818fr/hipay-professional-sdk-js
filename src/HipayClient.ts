@@ -462,7 +462,7 @@ export class HipayException extends Error {
     public httpResponse?: AxiosResponse;
 
     constructor(message: string, cause: Error, httpResponse: any) {
-        super(message);
+        super(message + (cause && cause.message ? ' (' + cause.message + ')' : ''));
         this.cause = cause;
         this.httpResponse = httpResponse;
     }

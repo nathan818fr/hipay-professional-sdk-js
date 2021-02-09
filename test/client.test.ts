@@ -35,8 +35,8 @@ describe('client', () => {
         expect(client.getEndpoint()).toBe('https://custom-endpoint.com/');
 
         expect(newClient('https://custom-endpoint.com/#withhash').getEndpoint()).toBe('https://custom-endpoint.com/');
-        expect(() => newClient('bad-endpoint')).toThrow();
-        expect(() => newClient('https://custom-endpoint.com/?withquery')).toThrow();
+        expect(() => newClient('bad-endpoint')).toThrow('env must be "production", "stage" or a valid http(s) URL');
+        expect(() => newClient('https://custom-endpoint.com/?withquery')).toThrow('env must be "production", "stage" or a valid http(s) URL');
     });
 
     it('execute requests', async () => {
@@ -83,36 +83,36 @@ describe('client', () => {
         // invalid content
         // @ts-ignore
         axios.request.mockResolvedValue({data: await snapshot('notification_signed.xml')});
-        await expect(hipayClient.createOrder(newCreateOrderRequest())).rejects.toThrow();
+        await expect(hipayClient.createOrder(newCreateOrderRequest())).rejects.toThrow('Error while parsing Hipay\'s response (SOAP-ENV:Envelope is missing!)');
 
         // node error
         // @ts-ignore
         axios.request.mockImplementation(() => {
-            throw new Error();
+            throw new Error('my error');
         });
-        await expect(hipayClient.createOrder(newCreateOrderRequest())).rejects.toThrow();
+        await expect(hipayClient.createOrder(newCreateOrderRequest())).rejects.toThrow('Error during HTTP requests to Hipay (my error)');
 
         // axios error
         // @ts-ignore
         axios.request.mockImplementation(() => {
-            return jest.requireActual('axios').request({url: 'http://10.255.255.1/', timeout: 1});
+            return jest.requireActual('axios').request({url: 'http://203.0.113.0/', timeout: 1});
         });
-        await expect(hipayClient.createOrder(newCreateOrderRequest())).rejects.toThrow();
+        await expect(hipayClient.createOrder(newCreateOrderRequest())).rejects.toThrowError('Error during HTTP requests to Hipay (timeout of 1ms exceeded)');
     });
 
     it('parse notifications', async () => {
         const notif = await hipayClient.parseNotification(await snapshot('notification_hased.xml'));
         expect(notif).toStrictEqual(await snapshot('notification_hased.result.json'));
 
-        await expect(hipayClient.parseNotification('')).rejects.toThrow();
-        await expect(hipayClient.parseNotification(await snapshot('notification_incomplete.xml'))).rejects.toThrow();
-        await expect(hipayClient.parseNotification(await snapshot('notification_malformed.xml'))).rejects.toThrow();
+        await expect(hipayClient.parseNotification('')).rejects.toThrow('Incomplete XML content');
+        await expect(hipayClient.parseNotification(await snapshot('notification_incomplete.xml'))).rejects.toThrow('Incomplete XML content');
+        await expect(hipayClient.parseNotification(await snapshot('notification_malformed.xml'))).rejects.toThrow('Can\'t decode XML content');
     });
 
     it('validate notifications hash/signature', async () => {
         await expect(hipayClient.parseNotification(await snapshot('notification_hased.xml'))).resolves.toBeDefined();
-        await expect(hipayClient.parseNotification(await snapshot('notification_bad_hash.xml'))).rejects.toThrow();
-        await expect(hipayClient.parseNotification(await snapshot('notification_illegal_hash.xml'))).rejects.toThrow();
+        await expect(hipayClient.parseNotification(await snapshot('notification_bad_hash.xml'))).rejects.toThrow(/^Bad md5content:.+/g);
+        await expect(hipayClient.parseNotification(await snapshot('notification_illegal_hash.xml'))).rejects.toThrow('md5content is invalid');
 
         await expect(hipayClient.parseNotification(await snapshot('notification_signed.xml'), {
             checkMd5Content: false,
@@ -121,11 +121,11 @@ describe('client', () => {
         await expect(hipayClient.parseNotification(await snapshot('notification_bad_hash.xml'), {
             checkMd5Content: false,
             checkSignature: true,
-        })).rejects.toThrow();
+        })).rejects.toThrow(/^Bad signature:.+/g);
         await expect(hipayClient.parseNotification(await snapshot('notification_illegal_hash.xml'), {
             checkMd5Content: false,
             checkSignature: true,
-        })).rejects.toThrow();
+        })).rejects.toThrow('md5content is invalid');
 
         await expect(hipayClient.parseNotification(await snapshot('notification_bad_hash.xml'), {
             checkMd5Content: false,
