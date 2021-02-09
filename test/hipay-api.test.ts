@@ -9,7 +9,6 @@ import {
     createOrderOrThrow,
     newCreateOrderRequest,
     openBrowserAndPay,
-    refundOrderOrThrow,
 } from './utils/hipay-helpers';
 import {NotificationListener} from './utils/notification-listener';
 
@@ -103,13 +102,16 @@ describe('test payment flow', () => {
         expectToMatchOrder(captureNotif, order);
 
         console.log('refund order...');
+        /* // FIXME: This test is disabled currently because HiPay staging servers changed their refund policy:
+           // FIXME: "transaction is not refundable to credit card or you must wait for 24 hours"
         const refundAmount = '9.99';
         const reunfdRes = await refundOrderOrThrow(hipayClient, {transactionPublicId: transid, amount: refundAmount});
         expect(reunfdRes.transactionPublicId).toBe(transid);
         expect(reunfdRes.amount).toBe(refundAmount);
         expect(reunfdRes.currency).toBe(order.currency);
+        */
 
-        /* // FIXME: Disable currently because HiPay staging servers send refund notification after many hours...
+        /* // FIXME: This test is disabled currently because HiPay staging servers send refund notification after hours.
         console.log('await refund notification...');
         const refundNotif = await listener.poll();
         expect(refundNotif.result).toBeDefined();
@@ -121,7 +123,7 @@ describe('test payment flow', () => {
         */
     });
 
-    /* // FIXME: Disable currently because HiPay returns error #7 'wsSubAccountId not found' when trying to cancel
+    /* // FIXME: This test is disabled currently because HiPay staging servers returns error #7 'wsSubAccountId not found' when trying to cancel
     it('authorize and cancel', async () => {
         console.log('create order...');
         const order = newCreateOrderRequest({callbackUrl});

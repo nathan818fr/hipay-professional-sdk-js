@@ -88,7 +88,7 @@ export const cancelOrderOrThrow = async (hipayClient: HipayClient, req: CancelOr
 };
 
 export const cards = {
-    VISA: '4716454138380767',
+    VISA: '4929890020692236',
     VISA_REJECTED: '4111113333333333',
 };
 
@@ -117,7 +117,7 @@ export const openBrowserAndPay = async (browser: Browser, orderUrl: string, card
         await page.select('#tokenCardExpiryDateYear', (new Date().getFullYear() + 5).toString(10));
         await page.type('#tokenCardSecurityCode', '123');
         await page.click('#validate_user_account_create_form');
-        const resultElem = await page.waitForSelector('#endSuccessTransactionBlock, #endErrorTransactionBlock, #main-content .errors .errorsDetail', {timeout: 60 * 1000});
+        const resultElem = await page.waitForSelector('#endSuccessTransactionBlock, #endErrorTransactionBlock, #endCancelTransactionBlock, #main-content .errors .errorsDetail', {timeout: 60 * 1000});
         const resultMsg = ((await getJsonProperty(resultElem, 'textContent')) + '').trim().replace(/\s\s+/g, '$1');
         if ((await getJsonProperty(resultElem, 'id')) === 'endSuccessTransactionBlock') {
             return 'success';
