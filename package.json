@@ -18,6 +18,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
+    "update-doc": "typedoc",
     "build": "npm run clean && npm run lint && npm run build-ts",
     "build-ts": "tsc",
     "clean": "rimraf lib",
@@ -45,6 +46,7 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^25.5.1",
     "tslint": "^6.1.2",
+    "typedoc": "^0.20.23",
     "typescript": "^3.9.7"
   }
 }

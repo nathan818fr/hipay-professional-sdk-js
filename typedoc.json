@@ -1,8 +1,7 @@
 {
   "out": "docs",
   "name": "hipay-professional-sdk-js",
-  "mode": "file",
-  "excludeNotExported": true,
+  "entryPoints": ["src/index.ts"],
   "excludePrivate": true,
   "exclude": [
     "src/utils.ts"

@@ -4,16 +4,17 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>hipay-professional-sdk-js</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for hipay-professional-sdk-js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -49,12 +50,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
-			<h1> hipay-professional-sdk-js</h1>
+			<h1>hipay-professional-sdk-js</h1>
 		</div>
 	</div>
 </header>
@@ -62,50 +58,60 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="hipay-professional-sdk-npm-version">hipay-professional-sdk &middot; <a href="https://badge.fury.io/js/hipay-professional-sdk"><img src="https://badge.fury.io/js/hipay-professional-sdk.svg" alt="npm version"></a></h1>
+				<a href="#hipay-professional-sdk-middot---" id="hipay-professional-sdk-middot---" style="color: inherit; text-decoration: none;">
+					<h1>hipay-professional-sdk &middot; <a href="https://travis-ci.com/nathan818fr/hipay-professional-sdk-js"><img src="https://travis-ci.com/nathan818fr/hipay-professional-sdk-js.svg?branch=master" alt="Build Status"></a> <a href="https://codecov.io/gh/nathan818fr/hipay-professional-sdk-js"><img src="https://codecov.io/gh/nathan818fr/hipay-professional-sdk-js/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://badge.fury.io/js/hipay-professional-sdk"><img src="https://badge.fury.io/js/hipay-professional-sdk.svg" alt="npm version"></a></h1>
+				</a>
 				<p><a href="https://hipay.com/en/hipay-professional">HiPay Professional</a> SDK for NodeJS.
 					You can create orders (payment pages), capture or refund payments and securely
 				decode Notifications (callbacks / pingbacks) sent by HiPay.</p>
 				<p>Note for TypeScript users:
 				This module build and provide its TypeScript declarations files (.d.ts).</p>
-				<h2 id="getting-started">Getting Started</h2>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting Started</h2>
+				</a>
 				<p><strong>Node.js</strong> &middot; Install the module with:</p>
-				<pre><code class="language-sh">npm i --save hipay-professional-sdk</code></pre>
-				<h3 id="quick-example">Quick Example</h3>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> HipayClient = <span class="hljs-built_in">require</span>(<span class="hljs-string">'hipay-professional-sdk'</span>).HipayClient;
+				<pre><code class="language-sh"><span style="color: #000000">npm i --save hipay-professional-sdk</span>
+</code></pre>
+				<a href="#quick-example" id="quick-example" style="color: inherit; text-decoration: none;">
+					<h3>Quick Example</h3>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">HipayClient</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hipay-professional-sdk&#039;</span><span style="color: #000000">).</span><span style="color: #001080">HipayClient</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">const</span> hipayClient = <span class="hljs-keyword">new</span> HipayClient({
-    <span class="hljs-attr">env</span>: <span class="hljs-string">'production'</span>,
-    <span class="hljs-attr">login</span>: <span class="hljs-string">'YOUR_API_LOGIN'</span>,
-    <span class="hljs-attr">password</span>: <span class="hljs-string">'YOUR_API_PASSWORD'</span>,
-});
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hipayClient</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">HipayClient</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">env:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;production&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">login:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;YOUR_API_LOGIN&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">password:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;YOUR_API_PASSWORD&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">});</span>
 
-hipayClient.createOrder({
-    <span class="hljs-attr">websiteId</span>: YOUR_WEBSITE_ID,
-    <span class="hljs-attr">categoryId</span>: YOUR_PRODUCT_CATEGORY,
-    <span class="hljs-attr">currency</span>: <span class="hljs-string">'EUR'</span>,
-    <span class="hljs-attr">amount</span>: <span class="hljs-string">'4.99'</span>,
-    <span class="hljs-attr">rating</span>: <span class="hljs-string">'ALL'</span>,
-    <span class="hljs-attr">locale</span>: <span class="hljs-string">'fr_FR'</span>,
-    <span class="hljs-attr">customerIpAddress</span>: CUSTOMER_IP,
-    <span class="hljs-attr">description</span>: <span class="hljs-string">'Life subscription to a super service!'</span>,
-    <span class="hljs-attr">executionDate</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(),
-    <span class="hljs-attr">manualCapture</span>: <span class="hljs-literal">true</span>,
-    <span class="hljs-attr">urlCallback</span>: <span class="hljs-string">'https://domain.tld/hipay-callback'</span>,
-}).then(<span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span> (response.error) {
-        <span class="hljs-comment">// HiPay reported an error during the request</span>
-        <span class="hljs-built_in">console</span>.log(response.error); <span class="hljs-comment">// {code: number, description: string}</span>
-        <span class="hljs-keyword">return</span>;
-    }
+<span style="color: #001080">hipayClient</span><span style="color: #000000">.</span><span style="color: #795E26">createOrder</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">websiteId:</span><span style="color: #000000"> </span><span style="color: #0070C1">YOUR_WEBSITE_ID</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">categoryId:</span><span style="color: #000000"> </span><span style="color: #0070C1">YOUR_PRODUCT_CATEGORY</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">currency:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;EUR&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">amount:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;4.99&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">rating:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;ALL&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">locale:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;fr_FR&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">customerIpAddress:</span><span style="color: #000000"> </span><span style="color: #0070C1">CUSTOMER_IP</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">description:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Life subscription to a super service!&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">executionDate:</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">(),</span>
+<span style="color: #000000">    </span><span style="color: #001080">manualCapture:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">urlCallback:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;https://domain.tld/hipay-callback&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">}).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">response</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">error</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #008000">// HiPay reported an error during the request</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// {code: number, description: string}</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">return</span><span style="color: #000000">;</span>
+<span style="color: #000000">    }</span>
 
-    <span class="hljs-comment">// HiPay created the new order, you can redirect your customer to the</span>
-    <span class="hljs-comment">// payment page!</span>
-    <span class="hljs-built_in">console</span>.log(response.result); <span class="hljs-comment">// {redirectUrl: string}</span>
-}).catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
-    <span class="hljs-comment">// An exception has occurred during the request (network error, ...)</span>
-});</code></pre>
-				<h3 id="usage">Usage</h3>
+<span style="color: #000000">    </span><span style="color: #008000">// HiPay created the new order, you can redirect your customer to the</span>
+<span style="color: #000000">    </span><span style="color: #008000">// payment page!</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// {redirectUrl: string}</span>
+<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// An exception has occurred during the request (network error, ...)</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h3>Usage</h3>
+				</a>
 				<p>To begin you need to get your API credentials :</p>
 				<ul>
 					<li><a href="https://www.hipaydirect.com/auth/login">Login</a> to the Hipay Professional
@@ -124,32 +130,58 @@ hipayClient.createOrder({
 				<ol>
 					<li>Create an order (<a href="https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#createorder">HipayClient.createOrder</a>)</li>
 					<li>Redirect your customer to the payment page</li>
-					<li>Listen for Notifications (callbacks / pingbacks) calls (TODO)</li>
+					<li>Listen for Notifications (callbacks / pingbacks) calls (<a href="https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#parsenotification">HipayClient.parseNotification</a>)</li>
 					<li>Capture payments (<a href="https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#captureorder">HipayClient.captureOrder</a>)</li>
 				</ol>
-				<h2 id="documentation">Documentation</h2>
-				<p>Technical documentation: [<a href="https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html%5D">https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html]</a></p>
-				<h2 id="building">Building</h2>
+				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+					<h2>Documentation</h2>
+				</a>
+				<p>Technical documentation: <a href="https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html">https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html</a></p>
+				<a href="#building" id="building" style="color: inherit; text-decoration: none;">
+					<h2>Building</h2>
+				</a>
 				<p>This project uses TypeScript. To create javascript sources run:</p>
-				<pre><code class="language-sh">npm run build</code></pre>
-				<h2 id="testing">Testing</h2>
+				<pre><code class="language-sh"><span style="color: #000000">npm run build</span>
+</code></pre>
+				<a href="#testing" id="testing" style="color: inherit; text-decoration: none;">
+					<h2>Testing</h2>
+				</a>
+				<p>For unit tests, a <strong>real payment flow is reproduced</strong> and tested (on the HiPay
+				staging API):</p>
+				<ul>
+					<li>An order is created</li>
+					<li>A browser is opened on the payment page and make a payment</li>
+					<li>A Notification (callback) listener wait for the transaction autorisation</li>
+					<li>The order is captured</li>
+					<li>A Notification (callback) listener wait for the transaction capture
+					(and several other complementary tests are performed)</li>
+				</ul>
 				<p>Run the unit tests (no need to run build before, they use the typescript files):</p>
-				<pre><code class="language-sh">npm run lint
-npm run <span class="hljs-built_in">test</span></code></pre>
-				<h2 id="contributing">Contributing</h2>
+				<pre><code class="language-sh"><span style="color: #000000">npm run lint</span>
+<span style="color: #000000">npm run </span><span style="color: #795E26">test</span>
+</code></pre>
+				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+					<h2>Contributing</h2>
+				</a>
 				<p>Contributions are welcome. Unfortunately there is no documentation on the
 				codestyle yet, so look at the existing sources and do the same.</p>
 				<p>The goal is to keep a simple project without unnecessary (non essential)
 					features.
 				Don&#39;t hesitate to open an issue before to discuss about your idea.</p>
-				<h2 id="versioning">Versioning</h2>
+				<a href="#versioning" id="versioning" style="color: inherit; text-decoration: none;">
+					<h2>Versioning</h2>
+				</a>
 				<p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available,
 				see the <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/tags">tags on this repository</a>.</p>
-				<h2 id="authors">Authors</h2>
+				<a href="#authors" id="authors" style="color: inherit; text-decoration: none;">
+					<h2>Authors</h2>
+				</a>
 				<ul>
 					<li><a href="https://github.com/nathan818fr">Nathan Poirier</a> &lt;<a href="mailto:nathan@poirier.io">nathan@poirier.io</a>&gt;</li>
 				</ul>
-				<h2 id="license">License</h2>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
 				<p>This project is licensed under the Apache-2.0 License - see the
 				<a href="./LICENSE">LICENSE</a> file for details.</p>
 			</div>
@@ -157,8 +189,8 @@ npm run <span class="hljs-built_in">test</span></code></pre>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
@@ -231,10 +263,16 @@ npm run <span class="hljs-built_in">test</span></code></pre>
 						<a href="interfaces/typedefinition.html" class="tsd-kind-icon">Type<wbr>Definition</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#environment" class="tsd-kind-icon">Environment</a>
+						<a href="modules.html#environment" class="tsd-kind-icon">Environment</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#float" class="tsd-kind-icon">Float</a>
+						<a href="modules.html#float" class="tsd-kind-icon">Float</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#definitions" class="tsd-kind-icon">definitions</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#namespaces" class="tsd-kind-icon">namespaces</a>
 					</li>
 				</ul>
 			</nav>
@@ -246,65 +284,20 @@ npm run <span class="hljs-built_in">test</span></code></pre>
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 		</div>
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
