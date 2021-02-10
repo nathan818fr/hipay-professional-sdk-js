@@ -24,7 +24,7 @@
     "clean": "rimraf lib",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "test": "jest --coverage --collectCoverageFrom=src/**/*.ts --verbose --detectOpenHandles",
-    "release": "npm run lint && npm run test && npm run build && np"
+    "release": "npm run lint && npm run build && np"
   },
   "dependencies": {
     "@babel/types": "^7.10.5",
@@ -39,12 +39,12 @@
     "@types/puppeteer": "^2.1.1",
     "dotenv": "^8.2.0",
     "fs-extra": "^8.1.0",
-    "jest": "^25.5.4",
+    "jest": "^26.6.3",
     "ngrok": "^3.2.7",
     "np": "^6.3.2",
     "puppeteer": "^2.1.1",
     "rimraf": "^3.0.2",
-    "ts-jest": "^25.5.1",
+    "ts-jest": "^26.5.1",
     "tslint": "^6.1.2",
     "typedoc": "^0.20.23",
     "typescript": "^3.9.7"

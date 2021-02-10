@@ -88,12 +88,12 @@ export const cancelOrderOrThrow = async (hipayClient: HipayClient, req: CancelOr
 };
 
 export const cards = {
-    VISA: '4929890020692236',
-    VISA_REJECTED: '4111113333333333',
+    VISA: process.env.TEST_VISA_ACCEPTED || '4929890020692236',
+    VISA_REJECTED: process.env.TEST_VISA_REJECTED || '4111113333333333',
 };
 
 export const client = {
-    email: 'hipay-professional-sdk-js@poirier.io',
+    email: process.env.TEST_CLIENT_EMAIL || 'hipay-professional-sdk-js@poirier.io',
 };
 
 const getJsonProperty = (el: ElementHandle, propertyName: string) => {
