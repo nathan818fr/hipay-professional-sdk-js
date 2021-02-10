@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HipayError | hipay-professional-sdk-js</title>
+	<title>Customer | hipay-professional-sdk-js</title>
 	<meta name="description" content="Documentation for hipay-professional-sdk-js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">hipay-professional-sdk-js</a>
 				</li>
 				<li>
-					<a href="hipayerror.html">HipayError</a>
+					<a href="customer.html">Customer</a>
 				</li>
 			</ul>
-			<h1>Interface HipayError</h1>
+			<h1>Interface Customer</h1>
 		</div>
 	</div>
 </header>
@@ -68,16 +68,20 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>API request error.</p>
+						<p>Customer&#39;s account information.</p>
 					</div>
-					<p><a href="https://developer.hipay.com/getting-started/platform-hipay-professional/overview/#integration-guidelines-error-handling">HiPay documentation</a></p>
+					<dl class="tsd-comment-tags">
+						<dt>see</dt>
+						<dd><p><a href="accountinfo.html#customer">AccountInfo.customer</a></p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HipayError</span>
+						<span class="target">Customer</span>
 					</li>
 				</ul>
 			</section>
@@ -88,8 +92,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hipayerror.html#code" class="tsd-kind-icon">code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hipayerror.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="customer.html#accountchange" class="tsd-kind-icon">account<wbr>Change</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="customer.html#openingaccountdate" class="tsd-kind-icon">opening<wbr>Account<wbr>Date</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="customer.html#passwordchange" class="tsd-kind-icon">password<wbr>Change</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,32 +103,47 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="code" class="tsd-anchor"></a>
-					<h3>code</h3>
-					<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="accountchange" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> account<wbr>Change</h3>
+					<div class="tsd-signature tsd-kind-icon">account<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8288eab/src/HipayClient.ts#L447">src/HipayClient.ts:447</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8288eab/src/Types.ts#L110">src/Types.ts:110</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Error code returned by HiPay.</p>
+							<p>Customer&#39;s last change on his account.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="description" class="tsd-anchor"></a>
-					<h3>description</h3>
-					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="openingaccountdate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> opening<wbr>Account<wbr>Date</h3>
+					<div class="tsd-signature tsd-kind-icon">opening<wbr>Account<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8288eab/src/HipayClient.ts#L452">src/HipayClient.ts:452</a></li>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8288eab/src/Types.ts#L115">src/Types.ts:115</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Error cause description.</p>
+							<p>Date when the customer created his account on the merchant&#39;s website.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="passwordchange" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> password<wbr>Change</h3>
+					<div class="tsd-signature tsd-kind-icon">password<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/8288eab/src/Types.ts#L120">src/Types.ts:120</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Date when the customer made a password change on his account.</p>
 						</div>
 					</div>
 				</section>
@@ -190,27 +210,30 @@
 					<li class=" tsd-kind-interface">
 						<a href="createorderresult.html" class="tsd-kind-icon">Create<wbr>Order<wbr>Result</a>
 					</li>
-					<li class=" tsd-kind-interface">
-						<a href="customer.html" class="tsd-kind-icon">Customer</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="hipayclientoptions.html" class="tsd-kind-icon">Hipay<wbr>Client<wbr>Options</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="hipayerror.html" class="tsd-kind-icon">Hipay<wbr>Error</a>
+						<a href="customer.html" class="tsd-kind-icon">Customer</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="hipayerror.html#code" class="tsd-kind-icon">code</a>
+								<a href="customer.html#accountchange" class="tsd-kind-icon">account<wbr>Change</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="hipayerror.html#description" class="tsd-kind-icon">description</a>
+								<a href="customer.html#openingaccountdate" class="tsd-kind-icon">opening<wbr>Account<wbr>Date</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="customer.html#passwordchange" class="tsd-kind-icon">password<wbr>Change</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="hipayclientoptions.html" class="tsd-kind-icon">Hipay<wbr>Client<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="hipayerror.html" class="tsd-kind-icon">Hipay<wbr>Error</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="hipaynotificationresponse.html" class="tsd-kind-icon">Hipay<wbr>Notification<wbr>Response</a>
 					</li>
