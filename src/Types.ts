@@ -1,6 +1,13 @@
 export type Float = string;
 
 /**
+ * A date stored in an integer as YYYYMMDD.
+ *
+ * @example 20190925
+ */
+export type DateInt = number;
+
+/**
  * An Affiliate which will receive a part of your earnings on the order capture.
  *
  * (not documented by HiPay)
@@ -69,38 +76,232 @@ export interface Item {
     taxes?: Tax[];
 }
 
+/**
+ * Information about the customer's account on the merchant's website.
+ *
+ * @see {@link CreateOrderRequest.accountInfo}
+ */
 export interface AccountInfo {
+    /**
+     * Customer's account information.
+     */
     customer?: Customer;
+
+    /**
+     * Customer's purchase information.
+     */
     purchase?: Purchase;
+
+    /**
+     * Customer's shipping information.
+     */
     shipping?: Shipping;
 }
 
+/**
+ * Customer's account information.
+ *
+ * @see {@link AccountInfo.customer}
+ */
 export interface Customer {
-    accountChange?: number;
-    openingAccountDate?: number;
-    passwordChange?: number;
+    /**
+     * Customer's last change on his account.
+     */
+    accountChange?: DateInt;
+
+    /**
+     * Date when the customer created his account on the merchant's website.
+     */
+    openingAccountDate?: DateInt;
+
+    /**
+     * Date when the customer made a password change on his account.
+     */
+    passwordChange?: DateInt;
 }
 
+/**
+ * Customer's purchase information.
+ *
+ * @see {@link AccountInfo.purchase}
+ */
 export interface Purchase {
+    /**
+     * Number of purchases with the customer's account during the last six months.
+     */
     count?: number;
+
+    /**
+     * Number of attempts to add a card into the customer's account in the last 24 hours.
+     */
     cardStored24h?: number;
+
+    /**
+     * Number of transactions (successful and abandoned) for this customer account across all payment accounts in the
+     * previous 24 hours.
+     */
     paymentAttempts24h?: number;
+
+    /**
+     * Number of transactions (successful and abandoned) for this customer account across all payment accounts in the
+     * previous year.
+     */
     paymentAttempts1y?: number;
 }
 
+/**
+ * Customer's shipping information.
+ *
+ * @see {@link AccountInfo.shipping}
+ */
 export interface Shipping {
-    shippingUsedDate?: number;
-    nameIndicator?: number;
-    suspiciousActivity?: number;
+    /**
+     * Date when the shipping address used for this transaction was first used.
+     */
+    shippingUsedDate?: DateInt;
+
+    /**
+     * Indicates if the Cardholder Name on the account is identical to the shipping Name used for this transaction.
+     */
+    nameIndicator?: NameIndicator;
+
+    /**
+     * Indicates whether the merchant has experienced suspicious activity (including previous fraud) on the cardholder account.
+     */
+    suspiciousActivity?: SuspiciousActivity;
 }
 
+/**
+ * @see {@link Shipping.nameIndicator}
+ */
+export enum NameIndicator {
+    /**
+     * Account name identical to shipping Name
+     */
+    IDENTICAL = 1,
+
+    /**
+     * Account name different than shipping Name
+     */
+    DIFFERENT = 2,
+}
+
+/**
+ * @see {@link Shipping.suspiciousActivity}
+ */
+export enum SuspiciousActivity {
+    /**
+     * No suspicious activity has been observed
+     */
+    NO_SUSPICIOUS_ACTIVITY = 1,
+
+    /**
+     * Suspicious activity has been observed
+     */
+    SUSPICIOUS_ACTIVITY = 2,
+}
+
+/**
+ * Merchant's statement about the transaction he wants to proceed.
+ *
+ * @see {@link CreateOrderRequest.merchantRiskStatement}
+ */
 export interface MerchantRiskStatement {
+    /**
+     * Email address to which the goods needs to be sent to.
+     */
     emailDeliveryAddress?: string;
-    deliveryTimeFrame?: number;
-    purchaseIndicator?: number;
-    preOrderDate?: number;
-    reorderIndicator?: number;
-    shippingIndicator?: number;
+
+    /**
+     * Indicates when the goods are willing to be received by the customer.
+     */
+    deliveryTimeFrame?: DeliveryTimeFrame;
+
+    /**
+     * Availability of the goods.
+     */
+    purchaseIndicator?: PurchaseIndicator;
+
+    /**
+     * For a pre-ordered purchase, the expected date that the merchandise will be available.
+     */
+    preOrderDate?: DateInt;
+
+    /**
+     * Unicity of the order for the customer.
+     */
+    reorderIndicator?: ReorderIndicator;
+
+    /**
+     * Address to whom the goods are to be sent
+     */
+    shippingIndicator?: ShippingIndicator;
+}
+
+/**
+ * @see {@link MerchantRiskStatement.deliveryTimeFrame}
+ */
+export enum DeliveryTimeFrame {
+    ELECTRONIC_DELIVERY = 1,
+    SAME_DAY_SHIPPING = 2,
+    OVERNIGHT_SHIPPING = 3,
+    TWO_DAY_OR_MORE_SHIPPING = 4,
+}
+
+/**
+ * @see {@link MerchantRiskStatement.purchaseIndicator}
+ */
+export enum PurchaseIndicator {
+    MERCHANDISE_AVAILABLE = 1,
+    FUTURE_AVAILABILITY = 2,
+}
+
+/**
+ * @see {@link MerchantRiskStatement.reorderIndicator}
+ */
+export enum ReorderIndicator {
+    FIRST_TIME_ORDERED = 1,
+    REORDERED = 2,
+}
+
+/**
+ * @see {@link MerchantRiskStatement.shippingIndicator}
+ */
+export enum ShippingIndicator {
+    /**
+     * Ship to cardholder's billing address.
+     */
+    SHIP_TO_CARDHOLDER_BILLING_ADDRESS = 1,
+
+    /**
+     * Ship to another verified address on file with merchant.
+     */
+    SHIP_TO_VERIFIED_ADDRESS = 2,
+
+    /**
+     * Ship to address that is different than the cardholder's billing address.
+     */
+    SHIP_TO_DIFFERENT_ADDRESS = 3,
+
+    /**
+     * Ship to store / pick up at local store.
+     */
+    SHIP_TO_STORE = 4,
+
+    /**
+     *  Digital goods (includes online services, electronic gift cards and redemption codes).
+     */
+    DIGITAL_GOODS = 5,
+
+    /**
+     * Travel and event tickets, not shipped.
+     */
+    DIGITAL_TRAVEL_EVENT_TICKETS = 6,
+
+    /**
+     * Other (gaming, digital services not shipped, e-media subscriptions).
+     */
+    OTHER = 7,
 }
 
 /**
