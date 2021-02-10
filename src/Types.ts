@@ -69,6 +69,40 @@ export interface Item {
     taxes?: Tax[];
 }
 
+export interface AccountInfo {
+    customer?: Customer;
+    purchase?: Purchase;
+    shipping?: Shipping;
+}
+
+export interface Customer {
+    accountChange?: number;
+    openingAccountDate?: number;
+    passwordChange?: number;
+}
+
+export interface Purchase {
+    count?: number;
+    cardStored24h?: number;
+    paymentAttempts24h?: number;
+    paymentAttempts1y?: number;
+}
+
+export interface Shipping {
+    shippingUsedDate?: number;
+    nameIndicator?: number;
+    suspiciousActivity?: number;
+}
+
+export interface MerchantRiskStatement {
+    emailDeliveryAddress?: string;
+    deliveryTimeFrame?: number;
+    purchaseIndicator?: number;
+    preOrderDate?: number;
+    reorderIndicator?: number;
+    shippingIndicator?: number;
+}
+
 /**
  * @see {@link HipayClient.createOrder}
  */
@@ -219,6 +253,9 @@ export interface CreateOrderRequest {
     items?: Item[];
     shopId?: string;
     thirdPartySecurity?: string;
+    accountInfo?: AccountInfo;
+    merchantRiskStatement?: MerchantRiskStatement;
+    exemption?: string;
     method?: string;
 }
 
@@ -365,6 +402,21 @@ const definitions: { [key: string]: TypeDefinition } = {
         ns: 'ns1',
     },
     Item: {
+        ns: 'ns1',
+    },
+    Customer: {
+        ns: 'ns1',
+    },
+    Purchase: {
+        ns: 'ns1',
+    },
+    Shipping: {
+        ns: 'ns1',
+    },
+    AccountInfo: {
+        ns: 'ns1',
+    },
+    MerchantRiskStatement: {
         ns: 'ns1',
     },
     CreateOrderRequest: {

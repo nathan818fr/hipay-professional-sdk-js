@@ -14,6 +14,11 @@ const namespaces = {
             AffiliateParameters: 'Affiliate',
             TaxeParameters: 'Tax',
             ItemParameters: 'Item',
+            AccountInfo: 'AccountInfo',
+            Customer: 'Customer',
+            Purchase: 'Purchase',
+            Shipping: 'Shipping',
+            MerchantRiskStatement: 'MerchantRiskStatement',
             PaymentParameters: 'CreateOrderRequest',
             PaymentResponse: 'CreateOrderResult',
         },
@@ -86,6 +91,16 @@ const tsType = (clazz, key, type) => {
             return 'Item[]';
         case 'tns:ArrayOfTaxeparameters':
             return 'Tax[]';
+        case 'tns:AccountInfo':
+            return 'AccountInfo';
+        case 'tns:Customer':
+            return 'Customer';
+        case 'tns:Purchase':
+            return 'Purchase';
+        case 'tns:Shipping':
+            return 'Shipping';
+        case 'tns:MerchantRiskStatement':
+            return 'MerchantRiskStatement';
         default:
             throw new Error('Unsupported type: ' + type + ' (' + clazz + '.' + key + ')');
     }
