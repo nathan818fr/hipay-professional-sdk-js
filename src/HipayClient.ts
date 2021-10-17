@@ -456,7 +456,7 @@ export interface HipaySuccessResponse<T> extends HipayBaseResponse {
     error: undefined;
 }
 
-export interface HipayErrorResponse<T = undefined> extends HipayBaseResponse {
+export interface HipayErrorResponse extends HipayBaseResponse {
     /**
      * The error.
      */
@@ -470,7 +470,7 @@ export interface HipayErrorResponse<T = undefined> extends HipayBaseResponse {
  * If an error has occurred, `error` is defined and `result` is undefined.
  * Otherwise, `result` is defined and `error` is undefined.
  */
-export type HipayResponse<T> = HipaySuccessResponse<T> | HipayErrorResponse<T>;
+export type HipayResponse<T> = HipaySuccessResponse<T> | HipayErrorResponse;
 
 /**
  * API request error.
@@ -498,7 +498,7 @@ export class HipayException extends Error {
     public cause?: Error;
     public httpResponse?: AxiosResponse;
 
-    constructor(message: string, cause: Error, httpResponse: any) {
+    constructor(message: string, cause: Error, httpResponse?: AxiosResponse) {
         super(message + (cause && cause.message ? ' (' + cause.message + ')' : ''));
         this.cause = cause;
         this.httpResponse = httpResponse;

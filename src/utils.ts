@@ -3,18 +3,18 @@ import {namespaces, TypeDefinition} from './Types';
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
-export const getPackageVersion = () => {
+export const getPackageVersion = (): string => {
     try {
         const pkg = require(__dirname + '/../package.json');
         if (pkg.version) {
-            return pkg.version;
+            return '' + pkg.version;
         }
     } catch (ignored) {}
     // istanbul ignore next
     return '?';
 };
 
-export const objectGetOrThrow = (obj: any, ...keys: string[]) => {
+export const objectGetOrThrow = (obj: any, ...keys: string[]): any => {
     let r = obj;
     for (const key of keys) {
         r = r[key];

@@ -15,5 +15,6 @@ install:
   - npm i -g codecov@3.7.0
   - yarn install --frozen-lockfile
 script:
+  - yarn run lint
   - yarn test
   - codecov
