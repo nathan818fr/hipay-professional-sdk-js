@@ -6,8 +6,8 @@ export class NotificationListener {
     private _hipayClient: HipayClient;
     private _srv: http.Server;
 
-    private _notificationsQueue: { err?: any, result?: HipayNotificationResponse }[] = [];
-    private _notificationListener?: (notif: { err?: any, result?: HipayNotificationResponse }) => void;
+    private _notificationsQueue: {err?: any; result?: HipayNotificationResponse}[] = [];
+    private _notificationListener?: (notif: {err?: any; result?: HipayNotificationResponse}) => void;
 
     constructor(hipayClient: HipayClient) {
         this._hipayClient = hipayClient;
@@ -15,17 +15,20 @@ export class NotificationListener {
 
     public start(port: number): Promise<AddressInfo> {
         let errorListener: (e: any) => void;
-        return (new Promise<AddressInfo>((resolve, reject) => {
+        return new Promise<AddressInfo>((resolve, reject) => {
             this._srv = http.createServer(this.listenReq);
-            this._srv.once('error', errorListener = async (e) => {
-                await this.stop();
-                return reject(e);
-            });
+            this._srv.once(
+                'error',
+                (errorListener = async (e) => {
+                    await this.stop();
+                    return reject(e);
+                })
+            );
             this._srv.listen(port, () => {
                 this._srv.removeListener('error', errorListener);
                 return resolve(this._srv.address() as AddressInfo);
             });
-        }));
+        });
     }
 
     public stop() {

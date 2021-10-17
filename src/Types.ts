@@ -448,7 +448,7 @@ export interface CreateOrderRequest {
      * You may use these parameters to submit values you wish to receive back in the API response messages or in the
      * notifications (eg. you can use these parameters to get back session data, order content or user info).
      */
-    freeData?: { [key: string]: string };
+    freeData?: {[key: string]: string};
 
     affiliates?: Affiliate[];
     items?: Item[];
@@ -583,7 +583,7 @@ export interface OrderNotificationResult {
     returnDescriptionLong?: string;
 }
 
-const namespaces: { [key: string]: string } = {
+const namespaces: {[key: string]: string} = {
     ns1: 'soap/payment-v2',
     ns2: 'soap/transaction-v2',
     ns3: 'soap/refund-v2',
@@ -595,7 +595,7 @@ export interface TypeDefinition {
     reqType?: string;
 }
 
-const definitions: { [key: string]: TypeDefinition } = {
+const definitions: {[key: string]: TypeDefinition} = {
     Affiliate: {
         ns: 'ns1',
     },

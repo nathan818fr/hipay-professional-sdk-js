@@ -9,8 +9,7 @@ export const getPackageVersion = () => {
         if (pkg.version) {
             return pkg.version;
         }
-    } catch (ignored) {
-    }
+    } catch (ignored) {}
     // istanbul ignore next
     return '?';
 };
@@ -28,9 +27,9 @@ export const objectGetOrThrow = (obj: any, ...keys: string[]) => {
 
 export const createBody = (endpoint: string, data: any, dataType: TypeDefinition): string => {
     const body = {
-        '_declaration': {_attributes: {version: '1.0', encoding: 'UTF-8'}},
+        _declaration: {_attributes: {version: '1.0', encoding: 'UTF-8'}},
         'SOAP-ENV:Envelope': {
-            '_attributes': {
+            _attributes: {
                 'xmlns:SOAP-ENV': 'http://schemas.xmlsoap.org/soap/envelope/',
                 ['xmlns:' + dataType.ns]: endpoint + namespaces[dataType.ns],
             },
@@ -58,12 +57,16 @@ export const createBodyParameters = (data: any, key?: string): any => {
         if (data instanceof Date) {
             return data.toISOString().substr(0, 19); // MySQL DATETIME format (Y-m-dTH:i:s) eg.: 2014-12-25T10:57:55
         }
-        if (key === 'freeData') { // TODO: Support custom types using TypeDefinition
+        if (key === 'freeData') {
+            // TODO: Support custom types using TypeDefinition
             return {item: Object.keys(data).map((k) => ({key: k, value: data[k]}))};
         }
         const parameters: any = {};
         for (const k in data) {
-            if (Object.prototype.hasOwnProperty.call(data, k) && !Object.prototype.hasOwnProperty.call(Object.prototype, k)) {
+            if (
+                Object.prototype.hasOwnProperty.call(data, k) &&
+                !Object.prototype.hasOwnProperty.call(Object.prototype, k)
+            ) {
                 parameters[k] = createBodyParameters(data[k], k);
             }
         }

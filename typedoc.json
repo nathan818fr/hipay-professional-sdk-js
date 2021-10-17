@@ -3,7 +3,5 @@
   "name": "hipay-professional-sdk-js",
   "entryPoints": ["src/index.ts"],
   "excludePrivate": true,
-  "exclude": [
-    "src/utils.ts"
-  ]
+  "exclude": ["src/utils.ts"]
 }

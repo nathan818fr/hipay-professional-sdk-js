@@ -23,10 +23,11 @@ jest.setTimeout(300 * 1000);
 
 beforeAll(async () => {
     loadEnv();
-    if (!process.env.HIPAY_LOGIN
-        || !process.env.HIPAY_PASSWORD
-        || !process.env.HIPAY_WEBSITE_ID
-        || !process.env.HIPAY_CATEGORY_ID
+    if (
+        !process.env.HIPAY_LOGIN ||
+        !process.env.HIPAY_PASSWORD ||
+        !process.env.HIPAY_WEBSITE_ID ||
+        !process.env.HIPAY_CATEGORY_ID
     ) {
         throw new Error('HIPAY_LOGIN, HIPAY_PASSWORD, HIPAY_WEBSITE_ID, HIPAY_CATEGORY_ID must be defined!');
     }
@@ -44,7 +45,7 @@ beforeAll(async () => {
     callbackUrl = await ngrok.connect({addr: addr.port, bind_tls: false});
 
     console.log('Prepare browser...');
-    browserDebug = (process.env.BROWSER_DEBUG === '1');
+    browserDebug = process.env.BROWSER_DEBUG === '1';
     const args = ['--no-sandbox', '--disable-setuid-sandbox'];
     if (browserDebug) {
         args.push('--window-size=1400,874');

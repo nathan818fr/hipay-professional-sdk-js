@@ -11,7 +11,7 @@ import {
     RefundOrderResult,
 } from '../../src';
 
-export const newCreateOrderRequest = (opts?: { callbackUrl?: string, undefinedItems?: boolean }): CreateOrderRequest => {
+export const newCreateOrderRequest = (opts?: {callbackUrl?: string; undefinedItems?: boolean}): CreateOrderRequest => {
     return {
         websiteId: parseInt(process.env.HIPAY_WEBSITE_ID || ''),
         categoryId: parseInt(process.env.HIPAY_CATEGORY_ID || ''),
@@ -25,28 +25,33 @@ export const newCreateOrderRequest = (opts?: { callbackUrl?: string, undefinedIt
         manualCapture: true,
         urlCallback: opts && opts.callbackUrl ? opts.callbackUrl : 'http://example.com/',
         emailCallback: 'merchant@example.com',
-        items: opts && opts.undefinedItems ? undefined : [
-            {
-                name: 'Lamborghini Aventador S',
-                type: ItemType.PRODUCT,
-                infos: '',
-                amount: '10.00',
-                quantity: 1,
-                reference: 'LAMBO-AV-S',
-                taxes: [{
-                    label: 'TVA',
-                    amount: '2.00',
-                }],
-            },
-            {
-                name: 'Insurance',
-                type: ItemType.INSURANCES,
-                infos: '',
-                amount: '2.39',
-                quantity: 1,
-                reference: 'LAMBO-INSURANCE',
-            },
-        ],
+        items:
+            opts && opts.undefinedItems
+                ? undefined
+                : [
+                      {
+                          name: 'Lamborghini Aventador S',
+                          type: ItemType.PRODUCT,
+                          infos: '',
+                          amount: '10.00',
+                          quantity: 1,
+                          reference: 'LAMBO-AV-S',
+                          taxes: [
+                              {
+                                  label: 'TVA',
+                                  amount: '2.00',
+                              },
+                          ],
+                      },
+                      {
+                          name: 'Insurance',
+                          type: ItemType.INSURANCES,
+                          infos: '',
+                          amount: '2.39',
+                          quantity: 1,
+                          reference: 'LAMBO-INSURANCE',
+                      },
+                  ],
         freeData: {
             sessionId: '123456789',
             options: JSON.stringify({fireExtinguisher: true, seatCover: false, color: 'yellow'}),
@@ -62,7 +67,10 @@ export const createOrderOrThrow = async (hipayClient: HipayClient, req: CreateOr
     return order.result.redirectUrl;
 };
 
-export const captureOrderOrThrow = async (hipayClient: HipayClient, req: CaptureOrderRequest): Promise<CaptureOrderResult> => {
+export const captureOrderOrThrow = async (
+    hipayClient: HipayClient,
+    req: CaptureOrderRequest
+): Promise<CaptureOrderResult> => {
     const order = await hipayClient.captureOrder(req);
     if (order.error) {
         throw new Error(order.error.description);
@@ -70,7 +78,10 @@ export const captureOrderOrThrow = async (hipayClient: HipayClient, req: Capture
     return order.result;
 };
 
-export const refundOrderOrThrow = async (hipayClient: HipayClient, req: RefundOrderRequest): Promise<RefundOrderResult> => {
+export const refundOrderOrThrow = async (
+    hipayClient: HipayClient,
+    req: RefundOrderRequest
+): Promise<RefundOrderResult> => {
     const order = await hipayClient.refundOrder(req);
     if (order.error) {
         throw new Error(order.error.description);
@@ -78,7 +89,10 @@ export const refundOrderOrThrow = async (hipayClient: HipayClient, req: RefundOr
     return order.result;
 };
 
-export const cancelOrderOrThrow = async (hipayClient: HipayClient, req: CancelOrderRequest): Promise<CancelOrderResult> => {
+export const cancelOrderOrThrow = async (
+    hipayClient: HipayClient,
+    req: CancelOrderRequest
+): Promise<CancelOrderResult> => {
     const order = await hipayClient.cancelOrder(req);
     if (order.error) {
         console.log(order.error);
@@ -88,8 +102,8 @@ export const cancelOrderOrThrow = async (hipayClient: HipayClient, req: CancelOr
 };
 
 export const cards = {
-    VISA: process.env.TEST_VISA_ACCEPTED || '4929890020692236',
-    VISA_REJECTED: process.env.TEST_VISA_REJECTED || '4111113333333333',
+    VISA: process.env.TEST_VISA_ACCEPTED || '4929890020692236',
+    VISA_REJECTED: process.env.TEST_VISA_REJECTED || '4111113333333333',
 };
 
 export const client = {
@@ -97,10 +111,15 @@ export const client = {
 };
 
 const getJsonProperty = (el: ElementHandle | null, propertyName: string) => {
-  return !el ? null : el.getProperty(propertyName).then((property) => property ? property.jsonValue() : null);
+    return !el ? null : el.getProperty(propertyName).then((property) => (property ? property.jsonValue() : null));
 };
 
-export const openBrowserAndPay = async (browser: Browser, orderUrl: string, cardNumber: string, opts: { browserDebug: boolean }) => {
+export const openBrowserAndPay = async (
+    browser: Browser,
+    orderUrl: string,
+    cardNumber: string,
+    opts: {browserDebug: boolean}
+) => {
     const page = await browser.newPage();
     try {
         if (opts.browserDebug) {
@@ -117,7 +136,10 @@ export const openBrowserAndPay = async (browser: Browser, orderUrl: string, card
         await page.select('#tokenCardExpiryDateYear', (new Date().getFullYear() + 5).toString(10));
         await page.type('#tokenCardSecurityCode', '123');
         await page.click('#validate_user_account_create_form');
-        const resultElem = await page.waitForSelector('#endSuccessTransactionBlock, #endErrorTransactionBlock, #endCancelTransactionBlock, #main-content .errors .errorsDetail', {timeout: 60 * 1000});
+        const resultElem = await page.waitForSelector(
+            '#endSuccessTransactionBlock, #endErrorTransactionBlock, #endCancelTransactionBlock, #main-content .errors .errorsDetail',
+            {timeout: 60 * 1000}
+        );
         const resultMsg = ((await getJsonProperty(resultElem, 'textContent')) + '').trim().replace(/\s\s+/g, '$1');
         if ((await getJsonProperty(resultElem, 'id')) === 'endSuccessTransactionBlock') {
             return 'success';

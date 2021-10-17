@@ -18,6 +18,7 @@
     "lib/**"
   ],
   "scripts": {
+    "format": "prettier -w ./src ./test \"*.js\" \"*.json\" \"*.yml\" \"*.md\"",
     "build": "yarn run clean && yarn run lint && yarn run build-ts",
     "build-ts": "tsc",
     "clean": "rimraf lib",
@@ -39,6 +40,7 @@
     "jest": "^27.2.5",
     "ngrok": "^4.2.2",
     "np": "^7.5.0",
+    "prettier": "^2.4.1",
     "puppeteer": "^9.1.1",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.7",

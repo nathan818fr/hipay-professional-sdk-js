@@ -5,22 +5,20 @@
     "array-type": [true, "array"],
     "ban-types": {
       "options": [
-        ["Object", "Avoid using the `Object` type. Did you mean `object`?"], [
+        ["Object", "Avoid using the `Object` type. Did you mean `object`?"],
+        [
           "Function",
           "Avoid using the `Function` type. Prefer a specific function type, like `() => void`, or use `ts.AnyFunction`."
-        ], ["Boolean", "Avoid using the `Boolean` type. Did you mean `boolean`?"],
+        ],
+        ["Boolean", "Avoid using the `Boolean` type. Did you mean `boolean`?"],
         ["Number", "Avoid using the `Number` type. Did you mean `number`?"],
         ["String", "Avoid using the `String` type. Did you mean `string`?"]
       ]
     },
     "class-name": true,
-    "comment-format": [
-      true, "check-space"
-    ],
+    "comment-format": [true, "check-space"],
     "curly": [true, "ignore-same-line"],
-    "indent": [
-      true, "spaces"
-    ],
+    "indent": [true, "spaces"],
     "interface-name": [true, "never-prefix"],
     "interface-over-type-literal": true,
     "jsdoc-format": true,
@@ -32,24 +30,22 @@
     "no-unnecessary-qualifier": true,
     "no-var-keyword": true,
     "object-literal-shorthand": true,
-    "one-line": [
-      true, "check-open-brace", "check-whitespace"
-    ],
+    "one-line": [true, "check-open-brace", "check-whitespace"],
     "prefer-const": true,
-    "quotemark": [
-      true, "single", "avoid-escape"
-    ],
+    "quotemark": [true, "single", "avoid-escape"],
     "semicolon": [true, "always", "ignore-bound-class-methods"],
     "space-within-parens": true,
     "triple-equals": true,
     "typedef-whitespace": [
-      true, {
+      true,
+      {
         "call-signature": "nospace",
         "index-signature": "nospace",
         "parameter": "nospace",
         "property-declaration": "nospace",
         "variable-declaration": "nospace"
-      }, {
+      },
+      {
         "call-signature": "onespace",
         "index-signature": "onespace",
         "parameter": "onespace",
@@ -57,9 +53,7 @@
         "variable-declaration": "onespace"
       }
     ],
-    "whitespace": [
-      true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type"
-    ],
+    "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type"],
     // Config different from tslint:latest
     "no-implicit-dependencies": [true, "dev"],
     "object-literal-key-quotes": [true, "consistent-as-needed"],

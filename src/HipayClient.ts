@@ -35,8 +35,7 @@ export class HipayClient {
                 url.hash = null;
                 return formatUrl(url);
             }
-        } catch (ignored) {
-        }
+        } catch (ignored) {}
         throw new Error('env must be "production", "stage" or a valid http(s) URL');
     }
 
@@ -90,7 +89,12 @@ export class HipayClient {
         return this._endpoint;
     }
 
-    private async request<T>(uri: string, data: any, dataType: TypeDefinition, opts?: RequestOptions): Promise<HipayResponse<T>> {
+    private async request<T>(
+        uri: string,
+        data: any,
+        dataType: TypeDefinition,
+        opts?: RequestOptions
+    ): Promise<HipayResponse<T>> {
         const req: AxiosRequestConfig = {
             baseURL: this._endpoint,
             url: uri,
@@ -136,14 +140,19 @@ export class HipayClient {
                 ignoreCdata: true,
                 ignoreDoctype: true,
             });
-            res = objectGetOrThrow(res,
+            res = objectGetOrThrow(
+                res,
                 'SOAP-ENV:Envelope',
                 'SOAP-ENV:Body',
                 'ns1:' + dataType.reqType + 'Response',
-                dataType.reqType + 'Result');
+                dataType.reqType + 'Result'
+            );
             result = {};
             for (const k in res) {
-                if (Object.prototype.hasOwnProperty.call(res, k) && !Object.prototype.hasOwnProperty.call(Object.prototype, k)) {
+                if (
+                    Object.prototype.hasOwnProperty.call(res, k) &&
+                    !Object.prototype.hasOwnProperty.call(Object.prototype, k)
+                ) {
                     result[k] = res[k]._text;
                 }
             }
@@ -154,7 +163,7 @@ export class HipayClient {
                 delete result.description;
             }
         } catch (e) {
-            throw new HipayException('Error while parsing Hipay\'s response', e, httpResponse);
+            throw new HipayException("Error while parsing Hipay's response", e, httpResponse);
         }
 
         const ret = (error ? {httpResponse, error} : {httpResponse, result}) as HipayResponse<T>;
@@ -259,7 +268,10 @@ export class HipayClient {
      * - *resolved* with an {@link HipayNotificationResponse} when no error is encountered
      * - *rejected* with an {@link Error} when any error occurs (invalid format, bad signature, ...)
      */
-    public async parseNotification(xmlStr: string, opts?: ParseNotificationOptions): Promise<HipayNotificationResponse> {
+    public async parseNotification(
+        xmlStr: string,
+        opts?: ParseNotificationOptions
+    ): Promise<HipayNotificationResponse> {
         // NOTE: This method returns a Promise in case of parsing or signature verification become async a day!
 
         let xml: any;
@@ -274,16 +286,18 @@ export class HipayClient {
                 ignoreDoctype: true,
             });
         } catch (e) {
-            throw new Error('Can\'t decode XML content');
+            throw new Error("Can't decode XML content");
         }
 
-        if (typeof xml !== 'object'
-            || typeof xml.mapi !== 'object'
-            || typeof xml.mapi.mapiversion !== 'object'
-            || typeof xml.mapi.mapiversion._text !== 'string'
-            || typeof xml.mapi.md5content !== 'object'
-            || typeof xml.mapi.md5content._text !== 'string'
-            || typeof xml.mapi.result !== 'object') {
+        if (
+            typeof xml !== 'object' ||
+            typeof xml.mapi !== 'object' ||
+            typeof xml.mapi.mapiversion !== 'object' ||
+            typeof xml.mapi.mapiversion._text !== 'string' ||
+            typeof xml.mapi.md5content !== 'object' ||
+            typeof xml.mapi.md5content._text !== 'string' ||
+            typeof xml.mapi.result !== 'object'
+        ) {
             throw new Error('Incomplete XML content');
         }
 
@@ -315,8 +329,9 @@ export class HipayClient {
                 }
                 const signature = hash.digest();
                 if (!crypto.timingSafeEqual(md5content, signature)) {
-                    throw new Error(md5content.toString('hex') + '(current) != '
-                        + signature.toString('hex') + '(expected)');
+                    throw new Error(
+                        md5content.toString('hex') + '(current) != ' + signature.toString('hex') + '(expected)'
+                    );
                 }
             };
             try {
@@ -337,7 +352,10 @@ export class HipayClient {
 
         const result: any = {};
         for (const k in xml.mapi.result) {
-            if (Object.prototype.hasOwnProperty.call(xml.mapi.result, k) && !Object.prototype.hasOwnProperty.call(Object.prototype, k)) {
+            if (
+                Object.prototype.hasOwnProperty.call(xml.mapi.result, k) &&
+                !Object.prototype.hasOwnProperty.call(Object.prototype, k)
+            ) {
                 const v = xml.mapi.result[k];
                 if (k === 'merchantDatas') {
                     result[k] = {};
@@ -412,7 +430,11 @@ export interface HipayClientOptions {
 
 export type Environment = 'stage' | 'production' | string;
 
-export interface RequestOptions extends Omit<AxiosRequestConfig, 'url' | 'method' | 'baseURL' | 'data' | 'responseType' | 'validateStatus' | 'transformResponse'> {
+export interface RequestOptions
+    extends Omit<
+        AxiosRequestConfig,
+        'url' | 'method' | 'baseURL' | 'data' | 'responseType' | 'validateStatus' | 'transformResponse'
+    > {
     /**
      * The number of milliseconds before the request times out.
      */
