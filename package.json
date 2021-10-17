@@ -7,46 +7,39 @@
   ],
   "author": "Nathan Poirier <nathan@poirier.io>",
   "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nathan818fr/hipay-professional-sdk-js.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nathan818fr/hipay-professional-sdk-js/issues"
-  },
   "homepage": "https://github.com/nathan818fr/hipay-professional-sdk-js",
+  "repository": "https://github.com/nathan818fr/hipay-professional-sdk-js",
+  "engines": {
+    "node": ">=10"
+  },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "update-doc": "typedoc",
-    "build": "npm run clean && npm run lint && npm run build-ts",
+    "build": "yarn run clean && yarn run lint && yarn run build-ts",
     "build-ts": "tsc",
     "clean": "rimraf lib",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "test": "jest --coverage --collectCoverageFrom=src/**/*.ts --verbose --detectOpenHandles",
-    "release": "npm run lint && npm run build && np"
+    "release": "yarn run lint && yarn run build && np"
   },
   "dependencies": {
-    "@babel/types": "^7.14.5",
-    "axios": "^0.21.1",
+    "@types/puppeteer": "^5.4.1",
+    "axios": "^0.23.0",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "@types/dotenv": "^8.2.0",
-    "@types/fs-extra": "^8.1.1",
-    "@types/jest": "^25.2.3",
+    "@types/fs-extra": "^9.0.13",
+    "@types/jest": "^27.0.2",
     "@types/node": "^13.13.52",
-    "@types/puppeteer": "^2.1.5",
     "dotenv": "^8.6.0",
-    "fs-extra": "^8.1.0",
-    "jest": "^26.6.3",
-    "ngrok": "^3.4.1",
-    "np": "^6.5.0",
-    "puppeteer": "^2.1.1",
+    "fs-extra": "^9.1.0",
+    "jest": "^27.2.5",
+    "ngrok": "^4.2.2",
+    "np": "^7.5.0",
+    "puppeteer": "^9.1.1",
     "rimraf": "^3.0.2",
-    "ts-jest": "^26.5.6",
+    "ts-jest": "^27.0.7",
     "tslint": "^6.1.2",
-    "typedoc": "^0.20.36",
-    "typescript": "^3.9.9"
+    "typescript": "^4.4.4"
   }
 }

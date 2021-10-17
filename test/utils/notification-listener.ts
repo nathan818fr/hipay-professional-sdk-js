@@ -33,10 +33,10 @@ export class NotificationListener {
             if (this._srv) {
                 this._srv.close(() => {
                     this._srv = undefined;
-                    return resolve();
+                    return resolve(undefined);
                 });
             } else {
-                return resolve();
+                return resolve(undefined);
             }
         });
     }

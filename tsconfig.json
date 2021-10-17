@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
     "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
-    "moduleResolution": "node",
     "sourceMap": true,
     "declaration": true,
     "outDir": "lib",

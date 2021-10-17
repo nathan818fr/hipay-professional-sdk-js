@@ -1,6 +1,6 @@
 import {config as loadEnv} from 'dotenv';
 import * as ngrok from 'ngrok';
-import {Browser, launch as launchBrowser} from 'puppeteer';
+import puppeteer, {Browser} from 'puppeteer';
 import {CreateOrderRequest, HipayClient, HipayNotificationResponse} from '../src';
 import {
     captureOrderOrThrow,
@@ -18,9 +18,9 @@ let callbackUrl: string;
 let browser: Browser;
 let browserDebug = false;
 
-beforeAll(async () => {
-    jest.setTimeout(300 * 1000);
+jest.setTimeout(300 * 1000);
 
+beforeAll(async () => {
     loadEnv();
     if (!process.env.HIPAY_LOGIN
         || !process.env.HIPAY_PASSWORD
@@ -48,7 +48,7 @@ beforeAll(async () => {
     if (browserDebug) {
         args.push('--window-size=1400,874');
     }
-    browser = await launchBrowser({headless: !browserDebug, args});
+    browser = await puppeteer.launch({headless: !browserDebug, args});
 
     console.log('Done!');
 });
