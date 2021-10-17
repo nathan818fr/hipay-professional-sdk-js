@@ -63,7 +63,7 @@ export const createBodyParameters = (data: any, key?: string): any => {
         }
         const parameters: any = {};
         for (const k in data) {
-            if (data.hasOwnProperty(k)) {
+            if (Object.prototype.hasOwnProperty.call(data, k) && !Object.prototype.hasOwnProperty.call(Object.prototype, k)) {
                 parameters[k] = createBodyParameters(data[k], k);
             }
         }

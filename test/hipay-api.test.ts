@@ -1,5 +1,6 @@
 import {config as loadEnv} from 'dotenv';
 import * as ngrok from 'ngrok';
+// @ts-ignore
 import puppeteer, {Browser} from 'puppeteer';
 import {CreateOrderRequest, HipayClient, HipayNotificationResponse} from '../src';
 import {
@@ -56,18 +57,15 @@ beforeAll(async () => {
 afterAll(async () => {
     if (listener) {
         await listener.stop();
-        listener = undefined;
     }
 
     if (callbackUrl) {
         await ngrok.disconnect(callbackUrl);
-        callbackUrl = undefined;
     }
     await ngrok.kill();
 
     if (browser && !browserDebug) {
         await browser.close();
-        browser = undefined;
     }
 });
 
@@ -157,8 +155,8 @@ describe('test payment flow', () => {
         order.manualCapture = false;
         const r = await hipayClient.createOrder(order);
         expect(r.error).toBeDefined();
-        expect(r.error.code).toBe(3);
-        expect(r.error.description).toContain('amount invalid');
+        expect(r.error!.code).toBe(3);
+        expect(r.error!.description).toContain('amount invalid');
     });
 });
 

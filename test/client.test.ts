@@ -76,8 +76,8 @@ describe('client', () => {
         axios.request.mockResolvedValue({data: await snapshot('response_generate_error.xml')});
         r = await hipayClient.createOrder(newCreateOrderRequest({undefinedItems: true}));
         expect(r.error).toBeDefined();
-        expect(r.error.code).toBe(3);
-        expect(r.error.description).toBeDefined();
+        expect(r.error!.code).toBe(3);
+        expect(r.error!.description).toBeDefined();
         expect(r.result).toBeUndefined();
 
         // invalid content

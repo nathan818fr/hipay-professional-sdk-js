@@ -7,7 +7,7 @@ export class NotificationListener {
     private _srv: http.Server;
 
     private _notificationsQueue: { err?: any, result?: HipayNotificationResponse }[] = [];
-    private _notificationListener: (notif: { err?: any, result?: HipayNotificationResponse }) => void;
+    private _notificationListener?: (notif: { err?: any, result?: HipayNotificationResponse }) => void;
 
     constructor(hipayClient: HipayClient) {
         this._hipayClient = hipayClient;
@@ -32,7 +32,6 @@ export class NotificationListener {
         return new Promise((resolve) => {
             if (this._srv) {
                 this._srv.close(() => {
-                    this._srv = undefined;
                     return resolve(undefined);
                 });
             } else {
@@ -48,7 +47,7 @@ export class NotificationListener {
     public poll(): Promise<HipayNotificationResponse> {
         const e = this._notificationsQueue.shift();
         if (e !== undefined) {
-            return e.err ? Promise.reject(e.err) : Promise.resolve(e.result);
+            return e.err ? Promise.reject(e.err) : Promise.resolve(e.result!);
         }
 
         return new Promise((resolve, reject) => {
@@ -66,7 +65,7 @@ export class NotificationListener {
                     if (err) {
                         return reject(err);
                     }
-                    return resolve(result);
+                    return resolve(result!);
                 });
             };
         });
@@ -76,7 +75,7 @@ export class NotificationListener {
         let err, result;
         try {
             // TODO: Log request?
-            let body: string;
+            let body: string | undefined;
             if (req.method === 'POST') {
                 body = await this.readBody(req);
             }

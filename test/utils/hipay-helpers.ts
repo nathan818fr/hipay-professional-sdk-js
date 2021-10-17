@@ -13,8 +13,8 @@ import {
 
 export const newCreateOrderRequest = (opts?: { callbackUrl?: string, undefinedItems?: boolean }): CreateOrderRequest => {
     return {
-        websiteId: parseInt(process.env.HIPAY_WEBSITE_ID),
-        categoryId: parseInt(process.env.HIPAY_CATEGORY_ID),
+        websiteId: parseInt(process.env.HIPAY_WEBSITE_ID || ''),
+        categoryId: parseInt(process.env.HIPAY_CATEGORY_ID || ''),
         amount: '14.39',
         currency: 'EUR',
         rating: 'ALL',
@@ -96,8 +96,8 @@ export const client = {
     email: process.env.TEST_CLIENT_EMAIL || 'hipay-professional-sdk-js@poirier.io',
 };
 
-const getJsonProperty = (el: ElementHandle, propertyName: string) => {
-  return el.getProperty(propertyName).then((property) => property ? property.jsonValue() : null);
+const getJsonProperty = (el: ElementHandle | null, propertyName: string) => {
+  return !el ? null : el.getProperty(propertyName).then((property) => property ? property.jsonValue() : null);
 };
 
 export const openBrowserAndPay = async (browser: Browser, orderUrl: string, cardNumber: string, opts: { browserDebug: boolean }) => {

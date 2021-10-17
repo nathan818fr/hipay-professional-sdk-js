@@ -3,6 +3,7 @@ node_js:
   - '10'
   - '12'
   - '14'
+  - '16'
 dist: xenial
 sudo: false
 addons:
@@ -11,9 +12,8 @@ cache:
   directories:
     - node_modules
 install:
-  - npm i
   - npm i -g codecov@3.7.0
+  - yarn install --frozen-lockfile
 script:
-  - npm run lint
-  - npm test
+  - yarn test
   - codecov

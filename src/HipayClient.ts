@@ -121,13 +121,13 @@ export class HipayClient {
         } catch (e) {
             throw new HipayException('Error during HTTP requests to Hipay', e, e.isAxiosError ? e.response : undefined);
         }
-        return this.parseResponse(httpResponse.data, dataType, httpResponse);
+        return this.parseResponse<T>(httpResponse.data, dataType, httpResponse);
     }
 
-    private parseResponse(data: any, dataType: TypeDefinition, httpResponse?: AxiosResponse) {
-        let error: HipayError, result: any;
+    private parseResponse<T>(data: any, dataType: TypeDefinition, httpResponse?: AxiosResponse): HipayResponse<T> {
+        let error: HipayError | undefined, result: any;
         try {
-            let r: any = xml2js(data, {
+            let res: any = xml2js(data, {
                 compact: true,
                 ignoreDeclaration: true,
                 ignoreInstruction: true,
@@ -136,15 +136,15 @@ export class HipayClient {
                 ignoreCdata: true,
                 ignoreDoctype: true,
             });
-            r = objectGetOrThrow(r,
+            res = objectGetOrThrow(res,
                 'SOAP-ENV:Envelope',
                 'SOAP-ENV:Body',
                 'ns1:' + dataType.reqType + 'Response',
                 dataType.reqType + 'Result');
             result = {};
-            for (const k in r) {
-                if (r.hasOwnProperty(k)) {
-                    result[k] = r[k]._text;
+            for (const k in res) {
+                if (Object.prototype.hasOwnProperty.call(res, k) && !Object.prototype.hasOwnProperty.call(Object.prototype, k)) {
+                    result[k] = res[k]._text;
                 }
             }
             if (result.code !== '0') {
@@ -156,9 +156,10 @@ export class HipayClient {
         } catch (e) {
             throw new HipayException('Error while parsing Hipay\'s response', e, httpResponse);
         }
-        const r = error ? {httpResponse, error} : {httpResponse, result};
-        Object.defineProperty(r, 'httpResponse', {enumerable: false});
-        return r;
+
+        const ret = (error ? {httpResponse, error} : {httpResponse, result}) as HipayResponse<T>;
+        Object.defineProperty(ret, 'httpResponse', {enumerable: false});
+        return ret;
     }
 
     /**
@@ -287,7 +288,7 @@ export class HipayClient {
         }
 
         const checkMd5Content = !opts || opts.checkMd5Content !== false; // defaults to true
-        const checkSignature = opts && opts.checkSignature === true; // defaults to false
+        const checkSignature = !!opts && opts.checkSignature === true; // defaults to false
         if (checkMd5Content || checkSignature) {
             const md5content = Buffer.from(xml.mapi.md5content._text, 'hex');
             if (!md5content || md5content.length !== 16) {
@@ -336,13 +337,16 @@ export class HipayClient {
 
         const result: any = {};
         for (const k in xml.mapi.result) {
-            if (xml.mapi.result.hasOwnProperty(k)) {
+            if (Object.prototype.hasOwnProperty.call(xml.mapi.result, k) && !Object.prototype.hasOwnProperty.call(Object.prototype, k)) {
                 const v = xml.mapi.result[k];
                 if (k === 'merchantDatas') {
                     result[k] = {};
                     for (const dataKey in v) {
-                        if (v.hasOwnProperty(dataKey) && dataKey.indexOf('_aKey_') === 0) {
-                            result[k][dataKey.substr(6 /* '_aKey_'.length */)] = v[dataKey]._text;
+                        if (Object.prototype.hasOwnProperty.call(v, dataKey) && dataKey.indexOf('_aKey_') === 0) {
+                            const k2 = dataKey.substr(6); // '_aKey_'.length = 6
+                            if (!Object.prototype.hasOwnProperty.call(Object.prototype, k2)) {
+                                result[k][k2] = v[dataKey]._text;
+                            }
                         }
                     }
                 } else if (typeof v._text !== 'undefined') {
@@ -415,25 +419,37 @@ export interface RequestOptions extends Omit<AxiosRequestConfig, 'url' | 'method
     timeout: number;
 }
 
+interface HipayBaseResponse<T> {
+    httpResponse: AxiosResponse;
+
+    /**
+     * The response result (defined only if no errors occurred).
+     */
+    result?: T;
+
+    /**
+     * The error (defined only if an error occurred).
+     */
+    error?: HipayError;
+}
+
+export interface HipaySuccessResponse<T> extends HipayBaseResponse<T> {
+    result: T;
+    error: undefined;
+}
+
+export interface HipayErrorResponse<T = undefined> extends HipayBaseResponse<T> {
+    result: undefined;
+    error: HipayError;
+}
+
 /**
  * API response to a request.
  *
  * If an error has occurred, error is defined and result is undefined.
  * Otherwise, result is defined and error is undefined.
  */
-export interface HipayResponse<T> {
-    httpResponse: AxiosResponse;
-
-    /**
-     * An error (defined only if an error occurred).
-     */
-    error?: HipayError;
-
-    /**
-     * The response result (defined only if no errors occurred).
-     */
-    result?: T;
-}
+export type HipayResponse<T> = HipaySuccessResponse<T> | HipayErrorResponse<T>;
 
 /**
  * API request error.
