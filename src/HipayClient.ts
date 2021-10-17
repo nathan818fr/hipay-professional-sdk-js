@@ -441,35 +441,34 @@ export interface RequestOptions
     timeout: number;
 }
 
-interface HipayBaseResponse<T> {
+interface HipayBaseResponse {
+    /**
+     * Reference to the internal axios response.
+     */
     httpResponse: AxiosResponse;
-
-    /**
-     * The response result (defined only if no errors occurred).
-     */
-    result?: T;
-
-    /**
-     * The error (defined only if an error occurred).
-     */
-    error?: HipayError;
 }
 
-export interface HipaySuccessResponse<T> extends HipayBaseResponse<T> {
+export interface HipaySuccessResponse<T> extends HipayBaseResponse {
+    /**
+     * The response result.
+     */
     result: T;
     error: undefined;
 }
 
-export interface HipayErrorResponse<T = undefined> extends HipayBaseResponse<T> {
-    result: undefined;
+export interface HipayErrorResponse<T = undefined> extends HipayBaseResponse {
+    /**
+     * The error.
+     */
     error: HipayError;
+    result: undefined;
 }
 
 /**
  * API response to a request.
  *
- * If an error has occurred, error is defined and result is undefined.
- * Otherwise, result is defined and error is undefined.
+ * If an error has occurred, `error` is defined and `result` is undefined.
+ * Otherwise, `result` is defined and `error` is undefined.
  */
 export type HipayResponse<T> = HipaySuccessResponse<T> | HipayErrorResponse<T>;
 

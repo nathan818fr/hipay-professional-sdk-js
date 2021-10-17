@@ -1,3 +1,5 @@
+import exp from 'constants';
+
 export type Float = string;
 
 /**
@@ -554,8 +556,9 @@ export interface RefundOrderResult {
     currency: string;
 }
 
-type OrderNotificationOperation = 'authorization' | 'capture' | 'cancellation' | 'refund' | 'reject';
-type OrderNotificationStatus = 'ok' | 'nok' | 'cancel' | 'waiting';
+export type OrderNotificationOperation = 'authorization' | 'capture' | 'cancellation' | 'refund' | 'reject';
+
+export type OrderNotificationStatus = 'ok' | 'nok' | 'cancel' | 'waiting';
 
 /**
  * @see {@link HipayClient.parseNotification}

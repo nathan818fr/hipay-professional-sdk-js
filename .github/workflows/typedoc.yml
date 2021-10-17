@@ -1,0 +1,27 @@
+---
+name: TypeDoc
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  typedoc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js v16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: v16.x
+      - name: Generate
+        run: |
+          npm i -g typedoc
+          yarn install --frozen-lockfile
+          typedoc
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: typedoc
+          folder: ./typedoc

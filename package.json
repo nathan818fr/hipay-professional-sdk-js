@@ -18,10 +18,10 @@
     "lib/**"
   ],
   "scripts": {
-    "format": "prettier -w ./src ./test \"*.js\" \"*.json\" \"*.yml\" \"*.md\"",
-    "build": "yarn run clean && yarn run lint && yarn run build-ts",
-    "build-ts": "tsc",
+    "format": "prettier -w ./src ./test ./.github \"*.js\" \"*.json\" \"*.yml\" \"*.md\"",
     "clean": "rimraf lib",
+    "build": "yarn run clean && yarn run build:ts",
+    "build:ts": "tsc",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "test": "jest --coverage --collectCoverageFrom=src/**/*.ts --verbose --detectOpenHandles",
     "release": "yarn run lint && yarn run build && np"

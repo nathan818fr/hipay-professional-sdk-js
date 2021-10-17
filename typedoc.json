@@ -1,7 +1,9 @@
 {
-  "out": "docs",
-  "name": "hipay-professional-sdk-js",
+  "out": "typedoc",
+  "name": "hipay-professional-sdk-js Documentation",
   "entryPoints": ["src/index.ts"],
+  "exclude": ["src/utils.ts"],
   "excludePrivate": true,
-  "exclude": ["src/utils.ts"]
+  "disableSources": true,
+  "githubPages": true
 }
