@@ -1,0 +1,105 @@
+<!DOCTYPE html><html class="default no-js"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>hipay-professional-sdk-js Documentation</title><meta name="description" content="Documentation for hipay-professional-sdk-js Documentation"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">hipay-professional-sdk-js Documentation</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>hipay-professional-sdk-js Documentation</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#hipay-professional-sdk" id="hipay-professional-sdk" style="color: inherit; text-decoration: none;">
+  <h1>hipay-professional-sdk</h1>
+</a>
+<p><a href="https://www.npmjs.com/package/hipay-professional-sdk"><img src="https://img.shields.io/npm/v/hipay-professional-sdk.svg" alt="npm version"></a>
+<img src="https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg" alt="TypeScript">
+<a href="https://travis-ci.com/nathan818fr/hipay-professional-sdk-js"><img src="https://travis-ci.com/nathan818fr/hipay-professional-sdk-js.svg?branch=master" alt="Build Status"></a>
+<a href="https://codecov.io/gh/nathan818fr/hipay-professional-sdk-js"><img src="https://codecov.io/gh/nathan818fr/hipay-professional-sdk-js/branch/master/graph/badge.svg" alt="codecov"></a></p>
+<p><a href="https://hipay.com/en/hipay-professional">HiPay Professional</a> SDK for NodeJS.
+You can create orders (payment pages), capture or refund payments and securely
+decode Notifications (callbacks / pingbacks) sent by HiPay.</p>
+<p>This module provides its own TypeScript declarations (.d.ts).</p>
+
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h2>Installation</h2>
+</a>
+<pre><code class="language-bash"><span class="hl-0">npm install hipay-professional-sdk</span>
+</code></pre>
+
+<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+  <h2>Example</h2>
+</a>
+<pre><code class="language-javascript"><span class="hl-1">const</span><span class="hl-0"> {</span><span class="hl-2">HipayClient</span><span class="hl-0">} = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&#39;hipay-professional-sdk&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">hipayClient</span><span class="hl-0"> = </span><span class="hl-1">new</span><span class="hl-0"> </span><span class="hl-3">HipayClient</span><span class="hl-0">({</span><br/><span class="hl-0">    </span><span class="hl-5">env:</span><span class="hl-0"> </span><span class="hl-4">&#39;production&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-5">login:</span><span class="hl-0"> </span><span class="hl-4">&#39;YOUR_API_LOGIN&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-5">password:</span><span class="hl-0"> </span><span class="hl-4">&#39;YOUR_API_PASSWORD&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-5">hipayClient</span><br/><span class="hl-0">    .</span><span class="hl-3">createOrder</span><span class="hl-0">({</span><br/><span class="hl-0">        </span><span class="hl-5">websiteId:</span><span class="hl-0"> </span><span class="hl-2">YOUR_WEBSITE_ID</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-5">categoryId:</span><span class="hl-0"> </span><span class="hl-2">YOUR_PRODUCT_CATEGORY</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-5">currency:</span><span class="hl-0"> </span><span class="hl-4">&#39;EUR&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-5">amount:</span><span class="hl-0"> </span><span class="hl-4">&#39;4.99&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-5">rating:</span><span class="hl-0"> </span><span class="hl-4">&#39;ALL&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-5">locale:</span><span class="hl-0"> </span><span class="hl-4">&#39;fr_FR&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-5">customerIpAddress:</span><span class="hl-0"> </span><span class="hl-2">CUSTOMER_IP</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-5">description:</span><span class="hl-0"> </span><span class="hl-4">&#39;Life subscription to a super service!&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-5">executionDate:</span><span class="hl-0"> </span><span class="hl-1">new</span><span class="hl-0"> </span><span class="hl-6">Date</span><span class="hl-0">(),</span><br/><span class="hl-0">        </span><span class="hl-5">manualCapture:</span><span class="hl-0"> </span><span class="hl-1">true</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-5">urlCallback:</span><span class="hl-0"> </span><span class="hl-4">&#39;https://domain.tld/hipay-callback&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">    })</span><br/><span class="hl-0">    .</span><span class="hl-3">then</span><span class="hl-0">((</span><span class="hl-5">response</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-7">if</span><span class="hl-0"> (</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">error</span><span class="hl-0">) {</span><br/><span class="hl-0">            </span><span class="hl-8">// HiPay reported an error during the request</span><br/><span class="hl-0">            </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">error</span><span class="hl-0">); </span><span class="hl-8">// {code: number, description: string}</span><br/><span class="hl-0">            </span><span class="hl-7">return</span><span class="hl-0">;</span><br/><span class="hl-0">        }</span><br/><br/><span class="hl-0">        </span><span class="hl-8">// HiPay created the new order, you can redirect your customer to the</span><br/><span class="hl-0">        </span><span class="hl-8">// payment page!</span><br/><span class="hl-0">        </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-5">response</span><span class="hl-0">.</span><span class="hl-5">result</span><span class="hl-0">); </span><span class="hl-8">// {redirectUrl: string}</span><br/><span class="hl-0">    })</span><br/><span class="hl-0">    .</span><span class="hl-3">catch</span><span class="hl-0">((</span><span class="hl-5">err</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-8">// An exception has occurred during the request (network error, ...)</span><br/><span class="hl-0">    });</span>
+</code></pre>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+<p>To begin you need to get your API credentials :</p>
+<ul>
+<li><a href="https://www.hipaydirect.com/auth/login">Login</a> to the Hipay Professional
+dashboard</li>
+<li>Go to the <a href="https://professional.hipay.com/toolbox/">Toolbox</a></li>
+<li>Your API credentials will be under &quot;Access to the web service&quot; (and are named
+&quot;Login&quot; and &quot;Password&quot;)</li>
+</ul>
+<p>You must also create a website and get it&#39;s ID:</p>
+<ul>
+<li>On the dashboard, go to Products &gt; <a href="https://professional.hipay.com/product/website">Website</a></li>
+<li>Click on &quot;Register a new Website&quot;, complete the form and validate</li>
+<li>Get your website ID (will be under your website name)</li>
+</ul>
+<p>You can now start using this SDK! Usual flow is:</p>
+<ol>
+<li>Create an order (<a href="https://hipay-professional-sdk-js.nathan818.fr/classes/hipayclient.html#createorder">HipayClient.createOrder</a>)</li>
+<li>Redirect your customer to the payment page</li>
+<li>Listen for Notifications (callbacks / pingbacks) calls (<a href="https://hipay-professional-sdk-js.nathan818.fr/classes/hipayclient.html#parsenotification">HipayClient.parseNotification</a>)</li>
+<li>Capture payments (<a href="https://hipay-professional-sdk-js.nathan818.fr/classes/hipayclient.html#captureorder">HipayClient.captureOrder</a>)</li>
+</ol>
+
+<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+  <h2>Documentation</h2>
+</a>
+<p>For a detailed API reference, see:
+<a href="https://hipay-professional-sdk-js.nathan818.fr/classes/hipayclient.html">hipay-professional-sdk-js.nathan818.fr</a></p>
+
+<a href="#building" id="building" style="color: inherit; text-decoration: none;">
+  <h2>Building</h2>
+</a>
+<p>This project uses TypeScript. To create javascript sources run:</p>
+<pre><code class="language-sh"><span class="hl-0">yarn run build</span>
+</code></pre>
+
+<a href="#testing" id="testing" style="color: inherit; text-decoration: none;">
+  <h2>Testing</h2>
+</a>
+<p>For unit tests, a <strong>real payment flow is reproduced</strong> and tested (on the HiPay
+staging API):</p>
+<ul>
+<li>An order is created</li>
+<li>A browser is opened on the payment page and make a payment</li>
+<li>A Notification (callback) listener wait for the transaction autorisation</li>
+<li>The order is captured</li>
+<li>A Notification (callback) listener wait for the transaction capture
+(and several other complementary tests are performed)</li>
+</ul>
+<p>Run the unit tests, install the dependencies and run <code>yarn test</code>:</p>
+<pre><code class="language-sh"><span class="hl-0">yarn install</span><br/><span class="hl-0">yarn run </span><span class="hl-3">test</span>
+</code></pre>
+
+<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+  <h2>Contributing</h2>
+</a>
+<p>Contributions are welcome.
+It is recommended to open an issue before introducing new features to discuss them.</p>
+
+<a href="#versioning" id="versioning" style="color: inherit; text-decoration: none;">
+  <h2>Versioning</h2>
+</a>
+<p>We use <a href="http://semver.org/">SemVer</a> for versioning.
+For the versions available, see the <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/tags">tags on this repository</a>.</p>
+
+<a href="#authors" id="authors" style="color: inherit; text-decoration: none;">
+  <h2>Authors</h2>
+</a>
+<ul>
+<li><a href="https://github.com/nathan818fr">Nathan Poirier</a> &lt;<a href="mailto:nathan@poirier.io">nathan@poirier.io</a>&gt;</li>
+</ul>
+
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h2>License</h2>
+</a>
+<p>This project is licensed under the Apache-2.0 License.
+See the <a href="https://github.com/nathan818fr/hipay-professional-sdk-js/blob/master/LICENSE">LICENSE</a> file for details.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-enum"><a href="enums/DeliveryTimeFrame.html" class="tsd-kind-icon">Delivery<wbr/>Time<wbr/>Frame</a></li><li class="tsd-kind-enum"><a href="enums/ItemType.html" class="tsd-kind-icon">Item<wbr/>Type</a></li><li class="tsd-kind-enum"><a href="enums/NameIndicator.html" class="tsd-kind-icon">Name<wbr/>Indicator</a></li><li class="tsd-kind-enum"><a href="enums/PurchaseIndicator.html" class="tsd-kind-icon">Purchase<wbr/>Indicator</a></li><li class="tsd-kind-enum"><a href="enums/ReorderIndicator.html" class="tsd-kind-icon">Reorder<wbr/>Indicator</a></li><li class="tsd-kind-enum"><a href="enums/ShippingIndicator.html" class="tsd-kind-icon">Shipping<wbr/>Indicator</a></li><li class="tsd-kind-enum"><a href="enums/SuspiciousActivity.html" class="tsd-kind-icon">Suspicious<wbr/>Activity</a></li><li class="tsd-kind-class"><a href="classes/HipayClient.html" class="tsd-kind-icon">Hipay<wbr/>Client</a></li><li class="tsd-kind-class"><a href="classes/HipayException.html" class="tsd-kind-icon">Hipay<wbr/>Exception</a></li><li class="tsd-kind-interface"><a href="interfaces/AccountInfo.html" class="tsd-kind-icon">Account<wbr/>Info</a></li><li class="tsd-kind-interface"><a href="interfaces/Affiliate.html" class="tsd-kind-icon">Affiliate</a></li><li class="tsd-kind-interface"><a href="interfaces/CancelOrderRequest.html" class="tsd-kind-icon">Cancel<wbr/>Order<wbr/>Request</a></li><li class="tsd-kind-interface"><a href="interfaces/CancelOrderResult.html" class="tsd-kind-icon">Cancel<wbr/>Order<wbr/>Result</a></li><li class="tsd-kind-interface"><a href="interfaces/CaptureOrderRequest.html" class="tsd-kind-icon">Capture<wbr/>Order<wbr/>Request</a></li><li class="tsd-kind-interface"><a href="interfaces/CaptureOrderResult.html" class="tsd-kind-icon">Capture<wbr/>Order<wbr/>Result</a></li><li class="tsd-kind-interface"><a href="interfaces/CreateOrderRequest.html" class="tsd-kind-icon">Create<wbr/>Order<wbr/>Request</a></li><li class="tsd-kind-interface"><a href="interfaces/CreateOrderResult.html" class="tsd-kind-icon">Create<wbr/>Order<wbr/>Result</a></li><li class="tsd-kind-interface"><a href="interfaces/Customer.html" class="tsd-kind-icon">Customer</a></li><li class="tsd-kind-interface"><a href="interfaces/HipayClientOptions.html" class="tsd-kind-icon">Hipay<wbr/>Client<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/HipayError.html" class="tsd-kind-icon">Hipay<wbr/>Error</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/HipayErrorResponse.html" class="tsd-kind-icon">Hipay<wbr/>Error<wbr/>Response</a></li><li class="tsd-kind-interface"><a href="interfaces/HipayNotificationResponse.html" class="tsd-kind-icon">Hipay<wbr/>Notification<wbr/>Response</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/HipaySuccessResponse.html" class="tsd-kind-icon">Hipay<wbr/>Success<wbr/>Response</a></li><li class="tsd-kind-interface"><a href="interfaces/Item.html" class="tsd-kind-icon">Item</a></li><li class="tsd-kind-interface"><a href="interfaces/MerchantRiskStatement.html" class="tsd-kind-icon">Merchant<wbr/>Risk<wbr/>Statement</a></li><li class="tsd-kind-interface"><a href="interfaces/OrderNotificationResult.html" class="tsd-kind-icon">Order<wbr/>Notification<wbr/>Result</a></li><li class="tsd-kind-interface"><a href="interfaces/ParseNotificationOptions.html" class="tsd-kind-icon">Parse<wbr/>Notification<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/Purchase.html" class="tsd-kind-icon">Purchase</a></li><li class="tsd-kind-interface"><a href="interfaces/RefundOrderRequest.html" class="tsd-kind-icon">Refund<wbr/>Order<wbr/>Request</a></li><li class="tsd-kind-interface"><a href="interfaces/RefundOrderResult.html" class="tsd-kind-icon">Refund<wbr/>Order<wbr/>Result</a></li><li class="tsd-kind-interface"><a href="interfaces/RequestOptions.html" class="tsd-kind-icon">Request<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/Shipping.html" class="tsd-kind-icon">Shipping</a></li><li class="tsd-kind-interface"><a href="interfaces/Tax.html" class="tsd-kind-icon">Tax</a></li><li class="tsd-kind-interface"><a href="interfaces/TypeDefinition.html" class="tsd-kind-icon">Type<wbr/>Definition</a></li><li class="tsd-kind-type-alias"><a href="modules.html#DateInt" class="tsd-kind-icon">Date<wbr/>Int</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Environment" class="tsd-kind-icon">Environment</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Float" class="tsd-kind-icon">Float</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#HipayResponse" class="tsd-kind-icon">Hipay<wbr/>Response</a></li><li class="tsd-kind-type-alias"><a href="modules.html#OrderNotificationOperation" class="tsd-kind-icon">Order<wbr/>Notification<wbr/>Operation</a></li><li class="tsd-kind-type-alias"><a href="modules.html#OrderNotificationStatus" class="tsd-kind-icon">Order<wbr/>Notification<wbr/>Status</a></li><li class="tsd-kind-variable"><a href="modules.html#definitions" class="tsd-kind-icon">definitions</a></li><li class="tsd-kind-variable"><a href="modules.html#namespaces" class="tsd-kind-icon">namespaces</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
