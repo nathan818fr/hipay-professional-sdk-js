@@ -1,24 +1,26 @@
-# hipay-professional-sdk &middot; [![Build Status](https://travis-ci.com/nathan818fr/hipay-professional-sdk-js.svg?branch=master)](https://travis-ci.com/nathan818fr/hipay-professional-sdk-js) [![codecov](https://codecov.io/gh/nathan818fr/hipay-professional-sdk-js/branch/master/graph/badge.svg)](https://codecov.io/gh/nathan818fr/hipay-professional-sdk-js) [![npm version](https://badge.fury.io/js/hipay-professional-sdk.svg)](https://badge.fury.io/js/hipay-professional-sdk)
+# hipay-professional-sdk
+
+[![npm version](https://img.shields.io/npm/v/hipay-professional-sdk.svg)](https://www.npmjs.com/package/hipay-professional-sdk)
+![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)
+[![Build Status](https://travis-ci.com/nathan818fr/hipay-professional-sdk-js.svg?branch=master)](https://travis-ci.com/nathan818fr/hipay-professional-sdk-js)
+[![codecov](https://codecov.io/gh/nathan818fr/hipay-professional-sdk-js/branch/master/graph/badge.svg)](https://codecov.io/gh/nathan818fr/hipay-professional-sdk-js)
 
 [HiPay Professional](https://hipay.com/en/hipay-professional) SDK for NodeJS.
 You can create orders (payment pages), capture or refund payments and securely
 decode Notifications (callbacks / pingbacks) sent by HiPay.
 
-Note for TypeScript users:
-This module build and provide its TypeScript declarations files (.d.ts).
+This module provides its own TypeScript declarations (.d.ts).
 
-## Getting Started
+## Installation
 
-**Node.js** &middot; Install the module with:
-
-```sh
-npm i --save hipay-professional-sdk
+```bash
+npm install hipay-professional-sdk
 ```
 
-### Quick Example
+## Example
 
 ```javascript
-const HipayClient = require('hipay-professional-sdk').HipayClient;
+const {HipayClient} = require('hipay-professional-sdk');
 
 const hipayClient = new HipayClient({
     env: 'production',
@@ -56,7 +58,7 @@ hipayClient
     });
 ```
 
-### Usage
+## Usage
 
 To begin you need to get your API credentials :
 
@@ -74,21 +76,22 @@ You must also create a website and get it's ID:
 
 You can now start using this SDK! Usual flow is:
 
-1. Create an order ([HipayClient.createOrder](https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#createorder))
+1. Create an order ([HipayClient.createOrder](https://hipay-professional-sdk-js.nathan818.fr/classes/hipayclient.html#createorder))
 2. Redirect your customer to the payment page
-3. Listen for Notifications (callbacks / pingbacks) calls ([HipayClient.parseNotification](https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#parsenotification))
-4. Capture payments ([HipayClient.captureOrder](https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html#captureorder))
+3. Listen for Notifications (callbacks / pingbacks) calls ([HipayClient.parseNotification](https://hipay-professional-sdk-js.nathan818.fr/classes/hipayclient.html#parsenotification))
+4. Capture payments ([HipayClient.captureOrder](https://hipay-professional-sdk-js.nathan818.fr/classes/hipayclient.html#captureorder))
 
 ## Documentation
 
-Technical documentation: [https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html](https://nathan818fr.github.io/hipay-professional-sdk-js/classes/hipayclient.html)
+For a detailed API reference, see:
+[hipay-professional-sdk-js.nathan818.fr](https://hipay-professional-sdk-js.nathan818.fr/classes/hipayclient.html)
 
 ## Building
 
 This project uses TypeScript. To create javascript sources run:
 
 ```sh
-npm run build
+yarn run build
 ```
 
 ## Testing
@@ -103,26 +106,22 @@ staging API):
 -   A Notification (callback) listener wait for the transaction capture
     (and several other complementary tests are performed)
 
-Run the unit tests (no need to run build before, they use the typescript files):
+Run the unit tests, install the dependencies and run `yarn test`:
 
 ```sh
-npm run lint
-npm run test
+yarn install
+yarn run test
 ```
 
 ## Contributing
 
-Contributions are welcome. Unfortunately there is no documentation on the
-codestyle yet, so look at the existing sources and do the same.
-
-The goal is to keep a simple project without unnecessary (non essential)
-features.
-Don't hesitate to open an issue before to discuss about your idea.
+Contributions are welcome.
+It is recommended to open an issue before introducing new features to discuss them.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available,
-see the [tags on this repository](https://github.com/nathan818fr/hipay-professional-sdk-js/tags).
+We use [SemVer](http://semver.org/) for versioning.
+For the versions available, see the [tags on this repository](https://github.com/nathan818fr/hipay-professional-sdk-js/tags).
 
 ## Authors
 
@@ -130,5 +129,5 @@ see the [tags on this repository](https://github.com/nathan818fr/hipay-professio
 
 ## License
 
-This project is licensed under the Apache-2.0 License - see the
-[LICENSE](./LICENSE) file for details.
+This project is licensed under the Apache-2.0 License.
+See the [LICENSE](https://github.com/nathan818fr/hipay-professional-sdk-js/blob/master/LICENSE) file for details.
