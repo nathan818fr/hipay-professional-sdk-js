@@ -76,10 +76,10 @@ You must also create a website and get it's ID:
 
 You can now start using this SDK! Usual flow is:
 
-1. Create an order ([HipayClient.createOrder](https://hipay-professional-sdk-js.nathan818.fr/classes/HipayClient.html#createorder))
+1. Create an order ([HipayClient.createOrder](https://hipay-professional-sdk-js.nathan818.fr/classes/HipayClient.html#createOrder))
 2. Redirect your customer to the payment page
-3. Listen for Notifications (callbacks / pingbacks) calls ([HipayClient.parseNotification](https://hipay-professional-sdk-js.nathan818.fr/classes/HipayClient.html#parsenotification))
-4. Capture payments ([HipayClient.captureOrder](https://hipay-professional-sdk-js.nathan818.fr/classes/HipayClient.html#captureorder))
+3. Listen for Notifications (callbacks / pingbacks) calls ([HipayClient.parseNotification](https://hipay-professional-sdk-js.nathan818.fr/classes/HipayClient.html#parseNotification))
+4. Capture payments ([HipayClient.captureOrder](https://hipay-professional-sdk-js.nathan818.fr/classes/HipayClient.html#captureOrder))
 
 ## Documentation
 
